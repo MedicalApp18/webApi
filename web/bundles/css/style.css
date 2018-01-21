@@ -1,0 +1,2065 @@
+/*header starts*/
+@import url('https://fonts.googleapis.com/css?family=Open+Sans');
+body{font-family: 'Open Sans', sans-serif;}
+.top-bar {
+	background-color: #05b3db;
+}
+.login-register-menu{text-align: center; padding: 0px 0px 0px; border-bottom: 1px solid #f4f4f4;}
+.login-register-link{padding: 10px 20px !important; background: #f4f4f4; color: #000; border-radius: 5px 5px 0 0; text-decoration: none !important;}
+.login-register-link-active{background: #00abd8 !important; color: #fff !important;}
+.field-disabled{background-color:#EBEBE4 !important;}
+#nav-wrapper .navbar {
+	border: none;
+	margin: 0;
+	min-height: auto;
+}
+
+#nav-wrapper .navbar-brand {
+	height: inherit;
+	padding: 10px 0;
+}
+
+#bs-example-navbar-collapse-1 .navbar-nav li {}
+
+#nav-wrapper .navbar-nav {
+	margin: 5px 0 0;
+}
+
+#nav-wrapper .navbar-nav li {
+	color: #fff;
+	letter-spacing: 0.05em;
+	text-transform: uppercase;
+}
+
+.usericon {
+	display: inline-block !important;
+	margin: 15px 15px 0 !important;
+	padding: 0 !important;
+}
+
+.homehealth-pan {
+	margin: 32px 0 0 !important;
+}
+
+#user-content-pan1 {
+	padding: 25px 0 25px;
+}
+
+#completed-patient-visits {
+	padding: 25px 0 0;
+}
+
+.homehealth-pan li {
+	padding-left: 20px;
+}
+
+.usericon i {
+	color: #fff;
+	float: left;
+	font-size: 20px;
+	margin-left: 10px;
+	margin-right: 3px;
+	margin-top: 12px;
+	/*	margin: 12px 5px;*/
+}
+.success_msg{color: green;
+    text-align: center;
+    padding-bottom: 10px;}
+.decline_msg{color: red;
+    text-align: center;
+    padding-bottom: 10px;}
+.usericon img {
+	float: left;
+}
+
+.usericon:hover {
+	background: none;
+}
+
+.nav>li>a:hover,
+.nav>li>a:focus {
+	background-color: transparent !important;
+}
+
+.nav>li>a:active,
+.nav>li>a:visited {
+	background-color: transparent !important;
+}
+
+#top-nav .dropdown-menu li {
+	font-size: 12px;
+	text-transform: capitalize;
+	padding: 0;
+	border-bottom: 1px solid rgba(0, 0, 0, 0.15);
+}
+
+#top-nav .dropdown-menu li:last-child {
+	border-bottom: none;
+}
+
+#top-nav .dropdown-menu li a:hover {
+	background: none;
+}
+
+#top-nav .dropdown-menu li a {
+	padding: 7px 20px !important;
+	color: #343e78;
+}
+
+.dropdown {
+	border-radius: 4px;
+}
+
+.dropdown-menu>li>a {
+	color: #428bca;
+}
+
+#top-nav .nav .open>a {
+	background: none !important;
+}
+
+#nav-wrapper .dropdown ul.dropdown-menu {
+	border-radius: 4px;
+	box-shadow: none;
+	/*	margin-top: 20px;*/
+	width: 220px;
+}
+
+#top-nav .dropdown ul.dropdown-menu:before {
+	content: "";
+	border-bottom: 10px solid #fff;
+	border-right: 10px solid transparent;
+	border-left: 10px solid transparent;
+	position: absolute;
+	top: -10px;
+	right: 16px;
+	z-index: 10;
+}
+
+#top-nav .dropdown ul.dropdown-menu:after {
+	content: "";
+	border-bottom: 12px solid rgba(0, 0, 0, 0.15);
+	border-right: 12px solid transparent;
+	border-left: 12px solid transparent;
+	position: absolute;
+	top: -12px;
+	right: 14px;
+	z-index: 9;
+}
+
+.user-content ul {
+	margin: 0;
+	padding: 0;
+}
+
+
+/*header ends*/
+
+
+/*main left section starts*/
+
+#user-content-pan .user-content {
+	padding: 20px 0 10px;
+}
+
+#user-content-pan .nav-tabs {
+	border-bottom: 1px solid #ccd1e3;
+}
+
+#user-content-pan .nav-tabs>li a {
+	color: #aeb5ce !important;
+	line-height: 4.5em;
+	padding: 0;
+	margin: 0 30px;
+}
+
+#user-content-pan .nav-tabs>li a:first-child {
+	margin-left: 0;
+}
+
+
+
+
+/*
+#user-content-pan .nav-tabs>li.active>a {
+	color: #343e78 !important;
+	border-color: transparent transparent #05b3db;
+}
+*/
+
+#user-content-pan .nav-tabs>li.active>a {
+	color: #343e78 !important;
+	border-color: transparent;
+	position: relative;
+	background: transparent;
+	border-radius: 0;
+}
+
+
+
+#user-content-pan .nav-tabs>li>a.active::after {
+	content: '';
+	position: absolute;
+	bottom: -1px;
+	width: 100%;
+	height: 4px;
+	left: 0;
+	background: #05b3db;
+}
+
+#user-content-pan .nav-tabs>li.active>a:hover {
+	background: transparent;
+}
+
+.nav-tabs>li>a:hover {
+	border-color: transparent transparent transparent;
+}
+
+#user-content-pan .tab-content {
+	margin-top: 40px;
+}
+
+.workdays-not-initiated h1 {
+	font-size: 13px;
+	color: #a5aece;
+	font-weight: bold;
+	text-transform: uppercase;
+	padding: 0 0 20px;
+	margin: 0;
+}
+
+.workdays-list {
+	padding: 10px 10px 10px;
+	border: 1px solid #a9b2d0;
+	border-radius: 0 !important;
+	margin: 0 0 10px;
+	/*
+	border-left-width: 6px;
+	border-left-color: #f05a29;
+*/
+}
+
+.workdays-list:before {
+	content: '';
+	content: "";
+	height: 100.7%;
+	left: -1px;
+	position: absolute;
+	top: -0.7px;
+	width: 8px;
+	background: #f05a29;
+}
+
+.workdays-list textarea {
+	border: 1px solid #a9b2d0;
+	border-radius: 10px;
+	outline: none;
+	height: 50px;
+	padding: 5px 10px 0;
+	width: 100%;
+}
+
+.close-me-btn {
+	text-align: center;
+	text-transform: uppercase;
+	outline: none !important;
+	border: 1px solid #8cc63f;
+	font-size: 11px;
+	background: #8cc63f;
+	color: #fff;
+	padding: 5px 0;
+	width: 100px;
+	border-radius: 18px;
+}
+
+.close-me-btn:hover {
+	color: #fff;
+}
+
+.close-me-btn:active {
+	box-shadow: none;
+	color: #fff;
+}
+.close-me-btn:focus {
+	color: #fff;
+}
+
+
+
+
+
+/*LOGIN PAGE STARTS */
+
+.overlay-login {
+			background: rgba(34, 41, 62, 0.9);
+			position: absolute;
+			top: 0;
+			bottom: 0;
+			height: 100%;
+			width: 100%;
+		}
+		
+		.homehealth-login-auth {
+			padding:60px 40px;
+			position: fixed;
+			top: 50%;
+			left: 50%;
+			-moz-transform: translate(-50%, -50%);
+			transform: translate(-50%, -50%);
+			-webkit-transform: translate(-50%, -50%);
+			max-width: 500px;
+			width: 100% !important;
+			background-color: #fff;
+			margin: 0 auto;
+			border-radius: 2px;
+			box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
+			overflow: hidden;
+		}
+		
+		.homehealth-login-auth h1 {
+			text-align: center;
+			font-size: 1.8em;
+		}
+		
+	
+		.homehealth-login-auth input[type=text],
+		input[type=password] {
+			height: 44px;
+			padding-left: 30px; font-size: 14px;
+			width: 100%;
+			margin-bottom: 10px;
+			-webkit-appearance: none;
+			background: #fff;
+			border: 1px solid #EEE;
+    		border-bottom: 1px solid #CCC;
+			outline: none !important;
+			box-sizing: border-box;
+			-moz-box-sizing: border-box;
+		}
+
+		
+		.homehealth-submit {
+			border: 0px;
+			color: #fff;
+			background-color: #00abd8;
+			padding: 17px 0px;
+			font-size: 14px;
+		}
+		
+		.homehealth-login-auth input[type=submit] {
+			width: 100%;
+			display: block;
+			margin-bottom: 10px;
+			position: relative;
+		}
+		.homehealth-login-auth input[type=button] {
+			width: 100%;
+			display: block;
+			margin-bottom: 10px;
+			position: relative;
+		}
+		.header-branding {
+			padding: 10px;
+			text-align: center;
+		}
+		
+		.homehealth-login-auth h1 {
+			font-size: 18px;
+			margin: 0;
+			padding: 15px 0;
+		}
+		
+		.homehealth-login-auth .login-field {
+			position: relative;
+			width: 100%;
+		}
+		
+		
+		.login-field .fa {
+			position: absolute;
+			top: 15px;
+			left: 10px;
+			color: #222;
+			transition: color 0.3s ease-out;
+		}
+		
+		@media screen and (min-width:320px) and (max-width:767px){
+			.homehealth-login-auth{width: 97% !important;}
+		}
+
+/*LOGIN PAGE ENDS/*
+
+
+
+
+
+
+
+/*WORKDAY INITIATED*/
+
+.workdays-initiated {
+	padding: 10px 10px 10px;
+	border: 1px solid #a9b2d0;
+	border-radius: 0 !important;
+	margin: 0 0 10px;
+	/*
+	border-left-width: 6px;
+	border-left-color: #f05a29;
+*/
+}
+
+.workdays-initiated:before {
+	content: '';
+	content: "";
+	height: 100.7%;
+	left: -1px;
+	position: absolute;
+	top: -0.7px;
+	width: 8px;
+	background: #7ac943;
+}
+
+.workdays-initiated::after {
+    content:"";
+    display: block;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+	pointer-events: none;
+    background-color: rgba(213, 213, 213, .3);
+}
+
+.sms_reminder {
+	font-size: 11px;
+	color: #7ac943;
+	display: block;
+	line-height: 1.2em;
+	padding: 7px 0 0;
+}
+
+.initiated-msg-area {
+	padding: 10px 0;
+}
+.initiated-msg-area h1{font-size: 12px; margin: 0; padding: 0; color: #7ac943;}
+.closemsgpan{font-size: 12px;}
+/*WORKDAY INITIATED*/
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.add-notes::-webkit-input-placeholder {
+	/* Chrome */
+	opacity: 1;
+	font-style: italic;
+	color: #a8aece;
+}
+
+.home-health-text {
+	float: left;
+	margin: 32px 15px 0;
+	color: #fff;
+}
+
+.add-notes:-ms-input-placeholder {
+	/* IE 10+ */
+	opacity: 1;
+	font-style: italic;
+	color: #a8aece;
+}
+
+.add-notes::-moz-placeholder {
+	/* Firefox 19+ */
+	opacity: 1;
+	font-style: italic;
+	color: #a8aece;
+}
+
+.add-notes:-moz-placeholder {
+	/* Firefox 4 - 18 */
+	opacity: 1;
+	font-style: italic;
+	color: #a8aece;
+}
+
+.provider_1 {
+	padding: 10px 0 0 10px;
+	display: table;
+	width: 100%;
+}
+
+.dos_1 {
+	padding: 10px 0;
+}
+
+.notes-area {
+	padding: 10px 0;
+}
+
+.provider_1 h2 {
+	font-size: 12px;
+	color: #05b3db;
+	font-weight: bold;
+	text-transform: uppercase;
+	margin: 0;
+	padding: 0 0 5px;
+}
+
+.dos_1 h2 {
+	font-size: 12px;
+	color: #05b3db;
+	font-weight: bold;
+	text-transform: uppercase;
+	margin: 0;
+	padding: 0 0 5px;
+}
+
+.daydate-title {
+	color: #343e78;
+	font-size: 14px;
+	line-height: 15px;
+	display: block;
+}
+
+.req_pending {
+	font-size: 13px;
+	color: #f05a29;
+	display: block;
+	line-height: 1.2em;
+	padding: 7px 0 0;
+}
+
+.phone_num {
+	font-size: 11px;
+	color: #aeb5ce;
+	display: block;
+	padding: 2px 0 0;
+}
+
+.spcl-title {
+	padding: 0;
+	margin: 0;
+	line-height: 15px;
+	display: block;
+	font-size: 14px;
+}
+
+.eod-not-submitted h1 {
+	font-size: 13px;
+	color: #a5aece;
+	font-weight: bold;
+	text-transform: uppercase;
+	padding: 25px 0 20px;
+	margin: 0;
+}
+
+.eod-list {
+	padding: 10px 10px 10px;
+	border: 1px solid #a9b2d0;
+	border-radius: 0 !important;
+	margin: 0 0 10px;
+	position: relative;
+	/*
+	border-left-width: 6px;
+	border-left-color: #f6c933;
+*/
+}
+
+.eod-list:before {
+	content: '';
+	content: "";
+	height: 100.7%;
+	left: -1px;
+	position: absolute;
+	top: -0.7px;
+	width: 8px;
+	background: #f6c933;
+}
+
+.eod-list textarea {
+	border: 1px solid #a9b2d0;
+	border-radius: 10px;
+	outline: none;
+	height: 50px;
+	padding: 5px 10px 0;
+	width: 100%;
+}
+
+.patient_visits {
+	font-size: 13px;
+	color: #f6c933;
+	display: block;
+	line-height: 1.4em;
+	padding: 7px 0 0;
+	margin: 20px 0 0;
+}
+
+.bot-icons {
+	display: table;
+	width: 100%;
+	margin: 10px 0 0;
+}
+
+.bot-icons ul {
+	list-style: none;
+	margin: 0;
+	padding: 0;
+}
+
+.bot-icons ul li {
+	margin: 0 10px 0 0;
+	float: left;
+}
+
+.bot-icons ul li a {
+	display: inline-block;
+}
+
+
+/*main left section ends*/
+
+
+/*main right section starts*/
+
+.employer-approval-pan h1 {
+	font-size: 13px;
+	color: #a5aece;
+	font-weight: bold;
+	text-transform: uppercase;
+	padding: 0 0 20px;
+	margin: 0;
+}
+
+.training-list {
+	padding: 10px 10px 0;
+	border: 1px solid #a9b2d0;
+	border-radius: 0 !important;
+	margin: 0 0 10px;
+	/*
+	border-left-width: 6px;
+	border-left-color: #ff931e;
+*/
+}
+
+.training-list:before {
+	content: '';
+	content: "";
+	height: 100.7%;
+	left: -1px;
+	position: absolute;
+	top: -0.7px;
+	width: 8px;
+	background: #ff931e;
+}
+
+.deny-btn {
+	background: #f15a24;
+	border-radius: 20px;
+	color: #fff;
+	font-size: 10px;
+	font-weight: bold;
+	outline: none !important;
+	box-shadow: none;
+	border: none;
+	margin: 10px 0 10px;
+	padding: 5px;
+	width: 46%;
+	text-transform: uppercase;
+}
+
+.approve-btn {
+	background: #7ac943;
+	border-radius: 20px;
+	color: #fff;
+	outline: none !important;
+	border: none;
+	font-size: 10px;
+	font-weight: bold;
+	margin: 10px 1px 10px;
+	padding: 5px;
+	width: 46%;
+	text-transform: uppercase;
+}
+
+.deny-btn:hover,
+.approve-btn:hover,
+.deny-btn:focus,
+.approve-btn:active,
+.approve-btn:focus {
+	color: #fff;
+	-webkit-box-shadow: none;
+	box-shadow: none;
+	-moz-box-shadow: none;
+}
+
+
+/*main right section ends*/
+
+
+/*COMPLETED PATIENT VISITS STARTS*/
+
+#completed-patient-visits .list-group-header .list-group-item {
+	border-bottom: 0;
+	color: #0bb7dd;
+}
+
+#completed-patient-visits .list-group-item {
+	border: 0;
+	text-transform: capitalize;
+	color: #343e78;
+	border-radius: 0;
+	padding-top: 12px !important;
+	padding-bottom: 12px !important;
+	background: none;
+	border-bottom: 1px solid #d8dbea;
+}
+
+#completed-patient-visits .list-group-item:first-child {
+	border-radius: 0;
+	border-top: none;
+}
+
+#completed-patient-visits .panel-body {
+	padding: 0;
+}
+
+#completed-patient-visits .list-group .list-group-item a {
+	color: #2895F1;
+	cursor: pointer;
+	text-decoration: none;
+}
+
+#completed-patient-visits .list-group.list-group-header {
+	padding: 0;
+	background: #f3fbfd;
+	margin: 0;
+	color: #0bb7dd;
+	font-size: 13px;
+	font-weight: bold;
+}
+
+#completed-patient-visits .list-group.list-group-body .glyphicon {
+	font-size: 25px;
+	vertical-align: middle;
+}
+
+#completed-patient-visits .list-group-panel {
+	border: none;
+	box-shadow: none;
+	border-radius: 0;
+}
+
+#completed-patient-visits .list-group.list-group-body .list-group-item {}
+
+.button-pan {
+	float: right;
+}
+
+.button-pan ul {
+	list-style: none;
+	padding: 0;
+	margin: 0;
+}
+
+.button-pan li {
+	float: left;
+	margin: 0 5px;
+}
+
+.button-pan li:last-child {
+	margin-right: 0;
+}
+
+.editbtn {
+	border: 1px solid #a5aece;
+	outline: none !important;
+	background: #fff;
+	font-size: 11px;
+	color: #a5aece;
+	padding: 5px 0;
+	width: 100px;
+	border-radius: 18px;
+}
+
+.disablebtn {
+	text-align: center;
+	outline: none !important;
+	text-transform: uppercase;
+	font-size: 11px;
+	border: 1px solid #f15a24;
+	background: #fff;
+	color: #f15a24;
+	padding: 5px 0;
+	width: 100px;
+	border-radius: 18px;
+}
+
+.disabledbtn {
+	text-align: center;
+	outline: none !important;
+	text-transform: uppercase;
+	font-size: 11px;
+	border: 1px solid #f15a24;
+	background: #fff;
+	color: #f15a24;
+	padding: 5px 0;
+	width: 100px;
+	border-radius: 18px;
+}
+
+.cancelbtn {
+	text-align: center;
+	outline: none !important;
+	text-align: center;
+	text-transform: uppercase;
+	font-size: 11px;
+	border: 1px solid #f15a24;
+	background: #f15a24;
+	color: #fff;
+	padding: 5px 0;
+	width: 100px;
+	border-radius: 18px;
+}
+
+.savebtn {
+	text-align: center;
+	text-transform: uppercase;
+	outline: none !important;
+	border: 1px solid #8cc63f;
+	font-size: 11px;
+	background: #8cc63f;
+	color: #fff;
+	padding: 5px 0;
+	width: 100px;
+	border-radius: 18px;
+}
+
+.disablebtn:hover {
+	color: #f15a24;
+}
+
+.editbtn:focus {
+	color: #a5aece;
+}
+
+.editbtn:active {
+	color: #a5aece;
+	box-shadow: none;
+}
+
+.editbtn:hover {
+	color: #a5aece;
+}
+
+.disablebtn:active {
+	color: #a5aece;
+	box-shadow: none;
+}
+
+.disablebtn:focus {
+	color: #f15a24;
+}
+
+.cancelbtn:hover,
+.savebtn:hover {
+	color: #fff;
+}
+
+.cancelbtn:active,
+.savebtn:active {
+	box-shadow: none;
+	color: #fff;
+}
+
+.cancelbtn:focus,
+.savebtn:focus {
+	color: #fff;
+}
+
+.search-provider-pan {
+	margin: 20px 0 100px;
+}
+
+.custom-txt-box {
+	border: 1px solid #a5aece;
+	border-radius: 20px !important;
+	width: 100%;
+	padding: 5px 20px;
+}
+
+.search-provider-pan .control-label {
+	color: #343e61 !important;
+}
+
+.providersearchbtn {
+	background: #05b3db;
+	outline: none !important;
+	margin: 2px 0 0;
+	border: none;
+	border-radius: 20px;
+	font-size: 12px;
+	padding: 7px 30px;
+	color: #fff;
+}
+
+.cal-icon {
+	background-color: transparent;
+	border: none;
+	position: relative;
+	right: 27px;
+	display: block;
+	top: 2px;
+	z-index: 9;
+}
+
+.search-provider-pan #provider-date-picker {
+	display: block;
+}
+
+.chosen-select {
+	width: 100%;
+}
+
+.chosen-select-deselect {
+	width: 100%;
+}
+
+.chosen-container {
+	display: inline-block;
+	font-size: 14px;
+	position: relative;
+	vertical-align: middle;
+}
+
+.chosen-container .chosen-drop {
+	background: #ffffff;
+	border: 1px solid #cccccc;
+	border-bottom-right-radius: 4px;
+	border-bottom-left-radius: 4px;
+	-webkit-box-shadow: 0 8px 8px rgba(0, 0, 0, .25);
+	box-shadow: 0 8px 8px rgba(0, 0, 0, .25);
+	margin-top: -1px;
+	position: absolute;
+	top: 100%;
+	left: -9000px;
+	z-index: 1060;
+}
+
+.chosen-container.chosen-with-drop .chosen-drop {
+	left: 0;
+	right: 0;
+}
+
+.chosen-container .chosen-results {
+	color: #aeb5ce;
+	margin: 0 4px 4px 0;
+	max-height: 240px;
+	padding: 0 0 0 4px;
+	position: relative;
+	overflow-x: hidden;
+	overflow-y: auto;
+	-webkit-overflow-scrolling: touch;
+}
+
+.chosen-container .chosen-results li {
+	display: none;
+	line-height: 1.42857143;
+	list-style: none;
+	margin: 0;
+	padding: 5px 6px;
+}
+
+.chosen-container .chosen-results li.group-option {
+	padding-left: 15px;
+}
+
+.chosen-container .chosen-results li.active-result {
+	cursor: pointer;
+	display: list-item;
+}
+
+.chosen-container .chosen-results li.highlighted {
+	background-color: #05b3db;
+	background-image: none;
+	color: white;
+}
+
+.chosen-container .chosen-results .no-results {
+	background: #eeeeee;
+	display: list-item;
+}
+
+.chosen-container-single .chosen-single {
+	background-color: #ffffff;
+	-webkit-background-clip: padding-box;
+	-moz-background-clip: padding;
+	background-clip: padding-box;
+	border: 1px solid #a5aece;
+	border-top-right-radius: 20px;
+	border-top-left-radius: 20px;
+	border-bottom-right-radius: 20px;
+	border-bottom-left-radius: 20px;
+	background-image: url("../images/dropdowncaret.png");
+	background-repeat: no-repeat;
+	background-position: 93% 50%;
+	outline: none;
+	box-shadow: none;
+	color: #555;
+	display: block;
+	height: 34px;
+	overflow: hidden;
+	line-height: 34px;
+	padding: 0 0 0 8px;
+	position: relative;
+	text-decoration: none;
+	white-space: nowrap;
+}
+
+.chosen-container-single .chosen-search {
+	margin: 0;
+	padding: 3px 4px;
+	position: relative;
+	white-space: nowrap;
+	z-index: 1000;
+}
+
+.chosen-container-single .chosen-search input[type="text"] {
+	background: url("../images/innersearch-icon.png") no-repeat;
+	border: 1px solid #a5aece;
+	margin: 1px 0;
+	background-position: 97% 50%;
+	outline: none;
+	padding: 4px 20px 4px 4px;
+	width: 100%;
+}
+
+
+/*COMPLETED PATIENT VISITS ENDS*/
+
+
+/*INVOICES STARTS*/
+
+#invoices-list-view {
+	padding: 25px 0 0;
+}
+
+#invoices-list-view .list-group-header .list-group-item {
+	border-bottom: 0;
+	color: #0bb7dd;
+}
+
+#invoices-list-view .list-group-item {
+	border: 0;
+	text-transform: capitalize;
+	color: #343e78;
+	border-radius: 0;
+	font-size: 11px;
+	padding-top: 12px;
+	padding-bottom: 12px !important;
+	background: none;
+	border-bottom: 1px solid #d8dbea;
+}
+
+#invoices-list-view .list-group-item:first-child {
+	border-radius: 0;
+	border-top: none;
+}
+
+#invoices-list-view .panel-body {
+	padding: 0;
+}
+
+#invoices-list-view .list-group .list-group-item a {
+	color: #2895F1;
+	cursor: pointer;
+	text-decoration: none;
+}
+
+#invoices-list-view .list-group.list-group-header {
+	padding: 0;
+	background: #f3fbfd;
+	margin: 0;
+	color: #0bb7dd;
+	font-size: 13px;
+	font-weight: bold;
+}
+
+#invoices-list-view .list-group.list-group-body .glyphicon {
+	font-size: 25px;
+	vertical-align: middle;
+}
+
+#invoices-list-view .list-group-panel {
+	border: none;
+	box-shadow: none;
+	border-radius: 0;
+}
+
+#invoices-list-view table tr th h3 {
+	color: #05b3db;
+	font-weight: bold;
+	margin: 0;
+	padding: 0 0 5px;
+	font-size: 13px;
+}
+
+#invoices-list-view table tr td:last-child{    border-right-style: solid;
+    padding-bottom: 15px;
+    border-width: 1px;
+    border-color: #ccd1e3;}
+
+#invoices-list-view table tr td {
+	color: #343e78;
+	font-size: 13px;
+	vertical-align: middle;
+	padding-top: 15px;
+	padding-bottom: 15px;
+}
+
+#invoices-list-view .navbar-right .dropdown-menu {
+	left: auto;
+	right: -23px;
+	top: 28px;
+}
+
+#invoices-list-view .dropdown ul.dropdown-menu:before {
+	content: "";
+	border-bottom: 7px solid #fff !important;
+	border-right: 7px solid transparent !important;
+	border-left: 7px solid transparent !important;
+	position: absolute;
+	top: -7px !important;
+	right: 20px !important;
+	z-index: 10 !important;
+}
+
+#invoices-list-view .dropdown ul.dropdown-menu:after {
+	content: "";
+	border-bottom: 7px solid #ccd1e3 !important;
+	border-right: 7px solid transparent !important;
+	border-left: 7px solid transparent !important;
+	position: absolute;
+	top: -8px !important;
+	right: 20px !important;
+	z-index: 9 !important;
+}
+
+#invoices-list-view .dropdown-menu {
+	border: 1px solid #ccd1e3;
+	border-radius: 0;
+}
+
+#invoices-list-view .table>thead>tr>th {
+	border-bottom: 0;
+}
+
+#invoices-list-view .table>tbody>tr:first-child>td {
+/*	border: none;*/
+}
+
+.sorting-dropdown .dropdown-menu li {
+	border-bottom: 1px solid #f2f2f2;
+	font-size: 12px;
+}
+
+.sorting-dropdown .dropdown-menu li a {
+	padding: 8px 10px;
+}
+
+#invoices-list-view .table>tbody {
+	border: 1px solid #a5aece;
+	margin-top: 50px;
+	padding: 10px;
+	border-right:0;
+}
+
+#invoices-list-view .text-body {
+	width: auto;
+}
+
+#invoices-list-view .text-body span {
+	text-decoration: underline;
+	font-size: 12px;
+	font-weight: bold;
+}
+
+#invoices-list-view .media-photo {
+	width: 15px;
+	vertical-align: top;
+}
+
+.invoices-table tr {
+	position: relative;
+}
+
+.invoices-table tr:after {
+	border-bottom: 1px solid #ccd0e4;
+	content: '';
+	left: 3%;
+	position: absolute;
+	width: 95%;
+}
+
+.invoices-table>tbody>tr>td {
+	border: none;
+}
+
+.invoices-table tr:first-child:after {
+	border-bottom: 0;
+}
+
+.pending-cls {
+	color: #f6c933 !important;
+}
+
+.sent-cls {
+	color: #7ac943 !important;
+}
+
+.sent-date {
+	display: block;
+	color: #aeb5ce;
+	font-size: 10px;
+}
+
+.sorting-dropdown .dropdown i {
+	color: #05b3db !important;
+}
+
+
+/*INVOICES ENDS*/
+
+
+/*PAYROLL REPORTS STARTS*/
+
+#payroll-reports-view {
+	padding: 25px 0 0;
+}
+
+#payroll-reports-view .list-group-item {
+	border: 0;
+	text-transform: capitalize;
+	color: #343e78;
+	border-radius: 0;
+	font-size: 13px;
+	padding-top: 20px;
+	padding-bottom: 20px;
+	background: none;
+	border-bottom: 1px solid #d8dbea;
+}
+
+#payroll-reports-view .list-group-item:first-child {
+	border-radius: 0;
+	border-top: none;
+}
+
+#payroll-reports-view .list-group-panel {
+	border: none;
+	box-shadow: none;
+	border-radius: 0;
+}
+
+.download_date_range {
+	font-weight: bold;
+	padding: 6px 0 0;
+}
+
+.downloadbtn {
+	text-align: center;
+	outline: none !important;
+	text-transform: uppercase;
+	font-size: 11px;
+	border: 1px solid #05b3db;
+	background: #05b3db;
+	color: #ffffff;
+	padding: 5px 0;
+	width: 100px;
+	border-radius: 18px;
+}
+
+.downloadbtn:focus {
+	color: #fff;
+}
+
+.downloadbtn:active {
+	color: #fff;
+	box-shadow: none;
+}
+
+.downloadbtn:hover {
+	color: #fff;
+}
+
+.download_date_range .media-photo {
+	width: 15px;
+	vertical-align: top;
+}
+
+.sorting-dropdown {
+	color: #aeb5ce;
+	font-weight: normal;
+	cursor: pointer;
+}
+
+#payroll-list-view table tbody {
+	border: 1px solid #d8dbea;
+	padding: 10px;
+}
+
+.sorting-dropdown ul {
+	list-style: none;
+	padding: 0;
+	margin: 0;
+}
+
+.sorting-dropdown ul li a {
+	color: inherit;
+}
+
+.sorting-dropdown ul li a:hover,
+.sorting-dropdown ul li a:focus {
+	text-decoration: none;
+}
+
+#payroll-list-view .dropdown ul.dropdown-menu {
+	border-radius: 4px;
+	box-shadow: none;
+	/*	margin-top: 20px;*/
+	width: 220px;
+}
+
+
+/*PAYROLL REPORTS ENDS*/
+
+
+/*ALL BUTTONS*/
+
+.sendallbtn {
+	text-align: center;
+	text-transform: uppercase;
+	outline: none !important;
+	border: 1px solid #7ac943;
+	font-size: 11px;
+	background: #7ac943;
+	color: #fff;
+	padding: 5px 0;
+	width: 100px;
+	border-radius: 18px;
+}
+
+.bntdflt:hover {
+	color: #fff;
+}
+
+.bntdflt:focus {
+	color: #fff;
+}
+
+.bntdflt:active {
+	color: #fff;
+	box-shadow: none;
+}
+
+.sendinvoicebtn {
+	text-align: center;
+	text-transform: uppercase;
+	outline: none !important;
+	border: 1px solid #05b3db;
+	font-size: 11px;
+	background: #05b3db;
+	color: #fff;
+	padding: 5px 0;
+	width: 100px;
+	border-radius: 18px;
+}
+
+.resendbtn {
+	text-align: center;
+	text-transform: uppercase;
+	outline: none !important;
+	border: 1px solid #ff931e;
+	font-size: 11px;
+	background: #ff931e;
+	color: #fff;
+	padding: 5px 0;
+	width: 100px;
+	border-radius: 18px;
+}
+
+.feesaddedbtn {
+	text-align: center;
+	text-transform: uppercase;
+	outline: none !important;
+	border: 1px solid #ccd0e4;
+	font-size: 11px;
+	background: #ccd0e4;
+	color: #fff;
+	padding: 5px 0;
+	width: 100px;
+	border-radius: 18px;
+}
+
+.addfeesbtnselect {
+	text-align: center;
+	text-transform: uppercase;
+	outline: none !important;
+	border: 1px solid #ff931e;
+	font-size: 11px;
+	background: #ff931e;
+	color: #fff;
+	padding: 5px 0;
+	width: 100px;
+	border-radius: 18px;
+}
+
+.remfeesbtnselect {
+	text-align: center;
+	text-transform: uppercase;
+	outline: none !important;
+	border: 1px solid #f15a24;
+	font-size: 11px;
+	background: #f15a24;
+	color: #fff;
+	padding: 5px 0;
+	width: 100px;
+	border-radius: 18px;
+}
+
+.addfeesbtn {
+	text-align: center;
+	text-transform: uppercase;
+	outline: none !important;
+	border: 1px solid #ff931e;
+	font-size: 11px;
+	background: #fff;
+	color: #ff931e;
+	padding: 5px 0;
+	width: 100px;
+	border-radius: 18px;
+}
+
+.addfeesbtn:hover {
+	color: #ff931e;
+}
+
+.addfeesbtn:active{
+	box-shadow: none;
+	color: #ff931e;
+}
+
+.addfeesbtn:focus{
+	color: #ff931e;
+}
+
+.update_invoicebtn {
+	text-align: center;
+	text-transform: uppercase;
+	outline: none !important;
+	border: 1px solid #8cc63f;
+	font-size: 11px;
+	background: #8cc63f;
+	color: #fff;
+	padding: 5px 0;
+	width: 120px;
+	border-radius: 18px;
+}
+
+
+
+
+/*ALL BUTTONS ENDS*/
+
+
+/*ADD FEES POPUP STARTS*/
+
+.add-fees-overlay {
+	background: rgba(34, 41, 62, 0.9);
+	position: fixed;
+	top: 0;
+	bottom: 0;
+	height: 100%;
+	width: 100%;
+	z-index: 99;
+}
+
+.add_fees-popup {
+	padding: 0 40px;
+	position: fixed;
+	top: 50%;
+	left: 50%;
+	-moz-transform: translate(-50%, -50%);
+	transform: translate(-50%, -50%);
+	-webkit-transform: translate(-50%, -50%);
+	max-width: 900px;
+	width: 100% !important;
+	background-color: #fff;
+	margin: 0 auto;
+	border-radius: 2px;
+	z-index: 99;
+	box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
+	overflow: hidden;
+}
+
+#add-fee-block .media-photo {
+	width: 15px;
+	vertical-align: top;
+}
+
+#add-fee-block h2 {
+	font-size: 18px;
+	text-align: center;
+	color: #ff931e;
+	display: block;
+	margin: 0;
+	padding: 20px 0 15px;
+	font-weight: bold;
+}
+
+#add-fee-block header {
+	padding: 10px;
+}
+
+#add-fee-block header .media {
+	margin-top: 0;
+	color: #343e61;
+	font-weight: bold;
+	margin-left: 20px;
+	text-align: center;
+}
+
+#add-fee-block header h1 {
+	font-size: 15px;
+	margin: 0;
+	padding: 5px 0 10px;
+	text-align: center;
+}
+
+.sum-up {
+	font-size: 20px;
+	display: block;
+	text-align: center;
+	color: #ff931e;
+	padding: 0 0 40px;
+}
+
+.close-fee-popup {
+	position: absolute;
+	top: 20px;
+	right: 20px;
+	cursor: pointer;
+}
+
+.close-fee-popup i {
+	font-weight: normal !important;
+	font-size: 25px;
+}
+
+._feetype {
+	color: #ccd0e4 !important;
+	text-transform: uppercase;
+/*	margin-left: 5px;*/
+}
+
+._feeamount {
+	color: #ccd0e4 !important;
+	text-transform: uppercase;
+}
+
+#addfees_fields .form-group input {
+	border: none;
+	box-shadow: none;
+	border-bottom: 1px solid #bcc2da;
+}
+
+.brdr_radius {
+	border-radius: 18px !important;
+}
+
+.scrollable-content {
+	max-height: 300px;
+	overflow: auto !important;
+	overflow-y: scroll;
+}
+
+.increase_fees_fields {
+	display: table;
+	width: 100%;
+}
+
+.selectfees-custom {
+	appearance: none;
+	-moz-appearance: none;
+	-webkit-appearance: none;
+	color: #2a3d84;
+	font-weight: bold;
+	font-size: 13px;
+	padding: 0;
+	outline: none;
+	width: 100%;
+	background-image: url(../images/dropdowncaret.png);
+	background-repeat: no-repeat;
+	background-position: 97% 55%;
+	border: none;
+	position: relative;
+	border-radius: 0;
+	/*	border-bottom: 1px solid #bfc5dc;*/
+	-moz-box-shadow: none;
+	box-shadow: none;
+	-webkit-box-shadow: none;
+}
+
+.brdr_btm_select {
+	position: relative;
+}
+
+selectfees-custom:focus {
+	box-shadow: none !important;
+}
+
+.brdr_btm_select:after {
+	content: '';
+	background: #bfc5dc;
+	position: absolute;
+	height: 1px;
+	left: 0;
+	bottom: 0;
+	width: 85%;
+}
+
+.currency-sign {
+	position: absolute;
+	top: 7px;
+	font-weight: bold;
+	font-size: 13px;
+}
+
+#addfees_fields .increase_fees_fields input {
+	padding-left: 13px;
+	color: #2a3d84;
+	font-weight: bold;
+	font-size: 13px;
+}
+
+.update_invoice {
+	padding: 20px;
+	text-align: center;
+}
+
+.total-fees-count {
+	font-size: 20px;
+	color: #8cc63f;
+	padding: 10px 0 0;
+	display: block;
+	text-align: center;
+}
+
+/*
+.brdr_top:after {
+	position: absolute;
+	content: '';
+	width: 85%;
+	left: 10%;
+	border-top: 1px solid #ffa544;
+	display: block;
+}
+*/
+
+.brdr_top:after {
+	position: absolute;
+	content: '';
+	width: 93%;
+	left: 3%;
+	border-top: 1px solid #bfc5dc;
+	display: block;
+}
+
+
+/*ADD FEES POPUP STARTS*/
+
+
+
+
+
+
+
+
+/*SORT DATA DROPDOWN STARTS*/
+
+#sorting-menu-new .navbar-right .dropdown-menu {
+			left: auto;
+			right: 0;
+			top: 44px;
+		}
+		
+		#sorting-menu-new.sorting-dropdown ul {
+			width: 100%;
+		}
+		
+		#sorting-menu-new .dropdown ul.dropdown-menu:before {
+			content: "";
+			border-bottom: 7px solid #fff !important;
+			border-right: 7px solid transparent !important;
+			border-left: 7px solid transparent !important;
+			position: absolute;
+			top: -7px !important;
+			right: 13px !important;
+			z-index: 10 !important;
+		}
+		
+		#sorting-menu-new .dropdown ul.dropdown-menu:after {
+			content: "";
+			border-bottom: 7px solid #a9b2d0 !important;
+			border-right: 7px solid transparent !important;
+			border-left: 7px solid transparent !important;
+			position: absolute;
+			top: -8px !important;
+			right: 13px !important;
+			z-index: 9 !important;
+		}
+		
+		#sorting-menu-new.list-sorting {
+			border: 1px solid #a9b2d0;
+			width: 100%;
+			margin: 10px 0;
+		}
+		
+		#sorting-menu-new ul li.dropdown a.dropdown-toggle {
+			display: block;
+			line-height: 40px;
+			padding: 0 10px;
+			width: 100%;
+		}
+		
+		#sorting-menu-new.sorting-dropdown .dropdown i {
+			right: 15px;
+			top: 10px;
+			position: absolute;
+		}
+		
+		.autofill-txtbox {
+			position: relative;
+			margin: auto;
+			margin-top: 5px;
+			margin-bottom: 5px;
+			border: none;
+			height: 24px;
+			box-shadow: none;
+		}
+		
+		.autofill-txtbox:focus {
+			box-shadow: none;
+		}
+
+/*SORT DATA DROPDOWN ENDS*/
+
+
+
+
+
+
+
+
+
+
+/*INVOICE POPUP STARTS*/
+.invoice-overlay {
+	background: rgba(34, 41, 62, 0.9);
+	position: fixed;
+	top: 0;
+	bottom: 0;
+	height: 100%;
+	width: 100%;
+	z-index: 99;
+}
+
+.invoice-popup {
+	padding: 0;
+	position: fixed;
+	top: 50%;
+	left: 50%;
+	-moz-transform: translate(-50%, -50%);
+	transform: translate(-50%, -50%);
+	-webkit-transform: translate(-50%, -50%);
+	max-width: 900px;
+	width: 100% !important;
+	background: #f1f2f9; 
+	margin: 0 auto;
+	border-radius: 2px;
+	z-index: 99;
+	box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
+	overflow: hidden;
+}
+.close-invoice-popup {
+	position: absolute;
+	top: 40px;
+	right: 40px;
+	cursor: pointer;
+}
+
+
+.invoice-header{position: relative;	background-color: #fff; padding:40px 0; text-align: center; }
+.invoice-header h1{font-size: 18px; text-align: center; color: #343e61; margin: 0; padding: 0; font-weight: bold;}
+.invoice-container{background: #fff; margin:20px 40px 0; max-height:550px; overflow-x: hidden;
+    overflow-y: scroll;}
+
+.invoice-footer{border-top:1px solid #f1f2f9; position: relative;  left: 0; right: 0; background: #fff;  padding:40px 0; text-align: center;}
+.downloadbtn {
+	border: 1px solid #05b3db;
+	outline: none !important;
+	background: #05b3db;
+	font-size: 11px;
+	color: #fff;
+	padding: 5px 0;
+	width: 100px;
+	border-radius: 18px;
+}
+.downloadbtn:focus {
+	color: #fff;
+}
+
+.downloadbtn:active {
+	color: #fff;
+	box-shadow: none;
+}
+
+.downloadbtn:hover {
+	color: #fff;
+}
+/*INVOICE POPUP ENDS*/
+
+
+
+
+
+
+/*POPUP COMPLETED-PATIENT-VISIT STARTS*/
+
+.edit-visit-overlay {
+	background: rgba(34, 41, 62, 0.9);
+	position: fixed;
+	top: 0;
+	bottom: 0;
+	height: 100%;
+	width: 100%;
+	z-index: 99;
+}
+
+.edit-visit-detail {
+	padding: 50px 40px;
+	position: fixed;
+	top: 50%;
+	left: 50%;
+	-moz-transform: translate(-50%, -50%);
+	transform: translate(-50%, -50%);
+	-webkit-transform: translate(-50%, -50%);
+	max-width: 600px;
+	width: 100% !important;
+	background-color: #fff;
+	margin: 0 auto;
+	border-radius: 2px;
+	z-index: 99;
+	box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
+	overflow: hidden;
+}
+
+#edit-patient-visit .form-group input[type=text] {
+	box-shadow: none;
+	border: none;
+	border: 1px solid #EEE;
+	border-bottom: 1px solid #CCC;
+	border-radius: 0;
+}
+
+.close-edit-pan {
+	width: 20px;
+	height: 20px;
+	position: absolute;
+	right: 20px;
+	top: 20px;
+	cursor: pointer;
+	font-family: arial;
+	font-weight: bold;
+}
+
+.label-custom {
+	line-height: 30px;
+}
+
+.cancel-edit-btn {
+	text-align: center;
+	outline: none !important;
+	text-align: center;
+	text-transform: uppercase;
+	font-size: 11px;
+	border: 1px solid #f15a24;
+	background: #f15a24;
+	color: #fff;
+	padding: 5px 0;
+	width: 100px;
+	margin-left: 10px !important;
+	border-radius: 18px;
+}
+
+.save-edit-btn {
+	text-align: center;
+	text-transform: uppercase;
+	outline: none !important;
+	border: 1px solid #8cc63f;
+	font-size: 11px;
+	background: #8cc63f;
+	color: #fff;
+	padding: 5px 0;
+	width: 100px;
+	border-radius: 18px;
+}
+
+.cancel-edit-btn:hover,
+.save-edit-btn:hover {
+	color: #fff;
+}
+
+.cancel-edit-btn:active,
+.save-edit-btn:active {
+	box-shadow: none;
+	color: #fff;
+}
+
+.cancel-edit-btn:focus,
+.save-edit-btn:focus {
+	color: #fff;
+}
+
+.select-visit-type {
+	appearance: none;
+	-moz-appearance: none;
+	-webkit-appearance: none;
+	color: #2a3d84;
+	font-weight: bold;
+	font-size: 13px;
+	padding: 0;
+	outline: none;
+	width: 100%;
+	background-image: url(../images/dropdowncaret.png);
+	background-repeat: no-repeat;
+	background-position: 97% 55%;
+	border: none;
+	position: relative;
+	border-radius: 0;
+	-moz-box-shadow: none;
+	box-shadow: none;
+	-webkit-box-shadow: none;
+}
+
+.sel_brdr {
+	position: relative;
+}
+
+.select-visit-type:focus {
+	box-shadow: none !important;
+}
+
+.sel_brdr:after {
+	content: '';
+	background: #bfc5dc;
+	position: absolute;
+	height: 1px;
+	left: 0;
+	bottom: 0;
+	width: 85%;
+}
+
+
+
+
+
+
+
+.selectinvoices-custom {
+	appearance: none;
+	-moz-appearance: none;
+	-webkit-appearance: none;
+	color: #aeb5ce;
+	font-weight: bold;
+	font-size: 13px;
+	padding: 0;
+	outline: none;
+	width: 80%;
+	background-image: url(../images/dropdowncaret1.png);
+	background-repeat: no-repeat;
+	background-position: 97% 55%;
+	border: none;
+	position: relative;
+	border-radius: 0;
+	/*	border-bottom: 1px solid #bfc5dc;*/
+	-moz-box-shadow: none;
+	box-shadow: none;
+	-webkit-box-shadow: none;
+}
+
+.login-link span a{ text-decoration: underline;font-size: 15px; padding: 12px;}
+.login-link span a:hover{ text-decoration: underline;}
+
+
+
+/*POPUP COMPLETED-PATIENT-VISIT ENDS*/
+
+@media (max-width:768px) {
+	#user-content-pan .user-content ul.nav li {
+		font-size: 13px;
+	}
+	.deny-btn {
+		font-size: 12px !important;
+		padding: 6px;
+	}
+	.approve-btn {
+		font-size: 12px !important;
+		padding: 6px;
+	}
+}
+
+@media (min-width:320px) and (max-width:767px) {
+	#user-content-pan .user-content ul.nav li {
+		width: 100% !important;
+	}
+	.custom-mobile-menu {
+		background: #fff;
+	}
+	#nav-wrapper .navbar-brand {
+		height: inherit;
+		padding: 10px 0;
+	}
+	.custom-mobile-menu .icon-bar {
+		background: #05b3db !important;
+	}
+	.home-health-text {
+		margin: 16px 5px 0;
+	}
+	.dropdown ul.dropdown-menu::before {
+		top: 50px;
+	}
+	.dropdown ul.dropdown-menu::after {
+		top: 48px;
+	}
+	.usericon {
+		float: right;
+	}
+	.dos_1 {
+		padding: 10px;
+	}
+}

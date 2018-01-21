@@ -1,0 +1,540 @@
+{% extends 'dashboard/base.html.twig' %}
+{% block title %}{{ app.session.get('login_user_name') }} - Dashboard{% endblock %}
+{% block stylesheets %}
+	{{ parent() }}
+	<link rel="stylesheet" href="{{asset('bundles/css/imageuploadify.min.css') }}">
+{% endblock %}
+{% block body %}
+	{{ parent() }}
+	<section id="edit-profile" class="main-content">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12 bhoechie-tab-menu">
+                    <div class="list-group">
+                        <a href="#" class="list-group-item active text-center">
+                            <i class="fa fa-user-md" aria-hidden="true"></i><br/>Personal & Contact Detail
+                            <span class="status-right"><i class="fa fa-exclamation-triangle" aria-hidden="true"></i></span>
+                        </a>
+                        <a href="#" class="list-group-item text-center" id="education-section">
+                            <i class="fa fa-graduation-cap" aria-hidden="true"></i><br/>Education & Specialization
+                            <span class="status-right greensign"><i class="fa fa-check-circle" aria-hidden="true"></i></span>
+                        </a>
+                        <a href="#" class="list-group-item text-center">
+                            <i class="fa fa-h-square" aria-hidden="true"></i><br/>Registration & Documents
+                            <span class="status-right orangesign"><i class="fa fa-exclamation-triangle" aria-hidden="true"></i></span>
+                        </a>
+                        <a href="#" class="list-group-item text-center">
+                            <i class="fa fa-h-square" aria-hidden="true"></i><br/>Clinics (Fee & Timings)
+                            <span class="status-right redsign"><i class="fa fa-exclamation-triangle" aria-hidden="true"></i></span>
+                        </a>
+                        <a href="#" class="list-group-item text-center">
+                            <i class="fa fa-briefcase" aria-hidden="true"></i><br/>Services & Experience
+                            <span class="status-right redsign"><i class="fa fa-exclamation-triangle" aria-hidden="true"></i></span>
+                        </a>
+                        <a href="#" class="list-group-item text-center">
+                            <i class="fa fa-trophy" aria-hidden="true"></i><br/>Awards & Memberships
+                        </a>
+                    </div>
+                </div>
+                <div class="col-lg-9 col-xs-12 bhoechie-tab">
+                    <!-- Personal Detail section -->
+                    <div class="bhoechie-tab-content active" id="personal-info">
+                        <section id="personal-contact">
+                            <div class="section-content">
+                                <h1 class="section-header">Personal Detail</h1>
+                            </div>
+                            <div class="contact-section">
+								<div class="row">
+									<div class="col-md-6 form-line">
+										<div class="form-group">
+											<div class="row">
+												<div class="col-md-3">
+													<label for="exampleInputUsername">Title</label>
+													<select class="form-control"><option>Mr</option><option>Mrs</option></select>
+												</div>
+												<div class="col-md-9">
+													<label for="InputUsername">Name*</label>
+													<input type="text" class="form-control" id="InputUsername" placeholder="Enter Name" field-name="fullName" value="{{profileData.fullName}}">
+												</div>
+											</div>
+										</div>
+										<div class="form-group">
+											<div class="row">
+												<div class="col-md-6">
+													<label for="InputGender">Gender</label>
+													<div>
+														<label class="radio-inline" for="gender-0">
+															<input type="radio" field-name="gender" name="gender" id="gender-0" value="Male" {% if profileData.gender == 'Male' %}checked="checked" {% endif %}>Male
+														</label>
+														<label class="radio-inline" for="gender-1">
+															<input type="radio" field-name="gender" name="gender" id="gender-1" value="Female" {% if profileData.gender == 'Female' %}checked="checked" {% endif %}>Female
+														</label>
+													</div>
+												</div>
+												<div class="col-md-6">
+													<div class="form-group">
+														<label for="telephone">Years of Experience*</label>
+														<input type="text" field-name="totalExp" class="form-control" id="telephone" placeholder="Enter Number of Years" value="{{profileData.totalExp}}">
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+									<div class="col-md-6">
+										<div class="form-group">
+											<label for="InputCity">City*</label>
+											<select class="form-control" field-name="cityId">
+												<option value=""></option>
+												{% for city in app.session.get('cityArray') %}
+													{% if city.id == profileData.cityId %}
+														<option value="{{ city.id }}" selected="selected">{{ city.name|e }}</option>
+													{% else %}
+														<option value="{{ city.id }}">{{ city.name|e }}</option>
+													{% endif %}
+												{% endfor %}
+											</select>
+										</div>
+										<div class="form-group">
+											<label for="InputState">State*</label>
+											<input type="text" class="form-control" id="InputState" placeholder="State">
+										</div>
+									</div>
+									<div class="col-md-12">
+										<div class="form-group">
+											<label for="description"> About me&nbsp;<i class="fa fa-info-circle" aria-hidden="true"></i></label>
+											<textarea class="form-control" id="description" field-name="aboutMe" placeholder="Enter Text">{{profileData.aboutMe}}</textarea>
+											<small>Changes made here requires verification, if not reflected in 48 hours then please contact support.</small>
+										</div>
+										<div class="form-group">
+                                            <label for="description">Doctor Profile Photo&nbsp;<i class="fa fa-info-circle" aria-hidden="true"></i></label>
+                                                <div class="image-uploader-pan">
+                                                    <div class="form-group mrgn_top">
+														<ul class="row upload-documents">
+															<li class="col-md-4"></li>
+															<li class="col-md-3">
+																<div class="uploadpic upload1">
+																	<form id="file-upload-form" class="uploader">
+																		<input id="file-upload" type="file" name="fileUpload" accept="image/*" />
+																		<label for="file-upload" id="file-drag">
+																			<img id="file-image"  src="#" alt="Preview" class="img-responsive hidden">
+																			<div id="start">
+																			  <i class="fa fa-download" aria-hidden="true"></i>
+																			  <div>Select a file or drag here</div>
+																			  <div id="notimage" class="hidden">Please select an image</div>
+																			  <span id="file-upload-btn" class="btn btn-primary">Select a file</span>
+																			</div>
+																			<div id="response" class="hidden">
+																			  <div id="messages"></div>
+																			  <progress class="progress" id="file-progress" value="0">
+																				<span>0</span>%
+																			  </progress>
+																			</div>
+																		  </label>
+																	</form>
+																</div>
+															</li>
+														</ul>
+													</div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+								</div>
+                        </section>
+                        <hr/>
+                        <section>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div id="contact-detail">
+                                        <div class="section-content">
+                                            <h1 class="section-header">Contact Details</h1>
+                                        </div>
+                                        <div class="bluebg-txt">
+                                            This will only be visible to you. Only Practo will use this to update you on anything important. Greyed out details are same as your account information & can be edited from <a href="">Edit Account.</a>
+                                        </div>
+
+                                        <div class="form-group mrgn_top">
+                                            <ul id="verify_contact_list" class="verify_list">
+                                                <li class="first_element_list">
+                                                    <div class="row">
+                                                        <div class="col-md-4">
+                                                            <label for="Inputcontactedit">Contact Number*</label>
+                                                            <input type="text" disabled class="form-control" value="{{profileData.mobileNumber}}" id="InputUsername" placeholder="">
+                                                        </div>
+                                                        <div class="col-md-8">
+                                                            <div class="save-verify">
+                                                                <h4><a href="">save and verify</a></h4>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </li>
+                                                <li>
+                                                    <div class="row">
+                                                        <div class="col-md-12">
+                                                            <a href="javascript:void(0)" class="more_contact_fields">+add more fields</a>
+                                                        </div>
+                                                    </div>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                        <div class="form-group mrgn_top">
+                                            <ul id="verify_email_list" class="verify_list">
+                                                <li class="first_element_list">
+                                                    <div class="row">
+                                                        <div class="col-md-4">
+                                                            <label for="Inputcontactedit">Email Address*</label>
+                                                            <input type="text" disabled class="form-control" value="{{profileData.email}}" id="InputUsername" placeholder="">
+                                                        </div>
+                                                        <div class="col-md-8">
+                                                            <div class="save-verify">
+                                                                <h4><a href="">save and verify</a></h4>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </li>
+                                                <li>
+                                                    <div class="row">
+                                                        <div class="col-md-12">
+                                                            <a href="javascript:void(0)" class="more_contact_fields_1">+add more fields</a>
+                                                        </div>
+                                                    </div>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </section>
+                    </div>
+                    <!-- educat section -->
+                    <div class="bhoechie-tab-content" id ="education-info">
+                    </div>
+                    <!-- hotel search -->
+                    <div class="bhoechie-tab-content">
+                        <section id="registration-documents">
+                            <div class="section-content">
+                                <h1 class="section-header">Registration Details *</h1>
+                            </div>
+                            <div class="bluebg-txt">Allied healthcare professionals do not need to enter registration details. <a href="">Know more</a></div>
+                            <div class="contact-section">
+                                <form>
+                                    <div class="row">
+                                        <div id="fields" class="col-md-12 form-line">
+                                            <div class="form-group control-group after-add-more">
+                                                <div class="row">
+                                                    <div class="col-md-4">
+                                                        <label for="exampleInputUsername">Council Registration Number *</label>
+                                                        <input type="text" placeholder="12314562" class="form-control" />
+                                                    </div>
+                                                    <div class="col-md-4">
+                                                        <label for="InputUsername">Council Name *</label>
+                                                        <select class="form-control"><option>Delhi, Homeopathic college</option>
+                                                              <option>Cuttack, Homeopathic college</option></select>
+                                                    </div>
+                                                    <div class="col-md-4">
+                                                        <label for="InputUsername">Year *</label>
+                                                        <select class="form-control">
+                                                        <option>2001</option>
+                                                        <option>2002</option>
+                                                        <option>2004</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-12">
+                                            <a class="btn addqual-btn"><i class="fa fa-plus"></i> add registration</a>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </section>
+                        <hr/>
+                        <section>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div id="contact-detail">
+                                        <div class="section-content">
+                                            <h1 class="section-header">Documents / Certificates *</h1>
+                                        </div>
+                                        <div class="bluebg-txt">
+                                            Add photo proof for Registration certificate & identity card to publish your profile. We require photo proofs to ensure that only you get access to your profile and nobody else
+                                        </div>
+                                        <div class="form-group">
+											<label for="description"> Doctor Profile Photo&nbsp;<i class="fa fa-info-circle" aria-hidden="true"></i></label>
+											<div class="image-uploader-pan">
+												<form>
+													<input type="file" accept=".xlsx,.xls,image/*,.doc,audio/*,.docx,video/*,.ppt,.pptx,.txt,.pdf" multiple>
+												</form>
+											</div>
+										</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </section>
+                    </div>
+                    <div class="bhoechie-tab-content">
+                        <section id="registration-documents">
+                            <div class="section-content">
+                                <h1 class="section-header pull-left">Clinics *</h1>
+                                <div class="pull-right"><a class="btn addclinic-btn"><i class="fa fa-plus"></i> add clinic</a></div>
+                            </div>
+                            <div class="contact-section">
+                                <form>
+                                    <div class="row">
+                                        <div id="fields" class="col-md-12 form-line">
+                                            <div class="blue-strip">
+                                                Details of clinics you are practicing at.You can also control the order of appearance of the clinics listed on your profile page by dragging the icon.
+                                            </div>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </section>
+                    </div>
+                    <div class="bhoechie-tab-content">
+                        <center>
+                            <h1 class="glyphicon glyphicon-credit-card" style="font-size:12em;color:#55518a"></h1>
+                            <h2 style="margin-top: 0;color:#55518a">Cooming Soon</h2>
+                            <h3 style="margin-top: 0;color:#55518a">Credit Card</h3>
+                        </center>
+                    </div>
+                    <div class="bhoechie-tab-content">
+                        <center>
+                            <h1 class="glyphicon glyphicon-credit-card" style="font-size:12em;color:#55518a"></h1>
+                            <h2 style="margin-top: 0;color:#55518a">Cooming Soon4</h2>
+                            <h3 style="margin-top: 0;color:#55518a">Credit Card</h3>
+                        </center>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="bottom-button-pan">
+            <div class="text-right">
+                <button type="button" class="btn btn-hot text-uppercase btn-sm"><a href="http://www.positiwitty.com/">Previous</a></button>
+                <button type="button" class="btn btn-sunny text-uppercase btn-sm">Next</button>
+            </div>
+        </div>
+    </section>
+{% endblock %}
+{% block javascripts %}
+	{{ parent() }}
+	<script type="text/javascript" src="{{ asset('bundles/js/imageuploadify.js') }}"></script>
+	<script type="text/javascript" src="{{ asset('bundles/js/profile.js') }}"></script>
+	<script type="text/javascript">
+        $(document).ready(function() {
+            $('input[type="file"]').imageuploadify();
+			
+			$("div.bhoechie-tab-menu>div.list-group>a").click(function(e) {
+                e.preventDefault();
+                $(this).siblings('a.active').removeClass("active");
+                $(this).addClass("active");
+                var index = $(this).index();
+                $("div.bhoechie-tab>div.bhoechie-tab-content").removeClass("active");
+                $("div.bhoechie-tab>div.bhoechie-tab-content").eq(index).addClass("active");
+            });
+        });
+    </script>
+    <script type="text/javascript">
+		var BaseUrl = '{{ app.request.getSchemeAndHttpHost() }}';
+		var token  = '{{ app.session.get('token') }}';
+		function getEducationTarget() {
+            return "{{ path('user_education') }}";
+        }
+        $(document).ready(function() {
+			var timeoutId;
+			//input propertychange 
+			$('#personal-info input, #personal-info textarea, #personal-info select').on('change', function() {
+				//console.log('Textarea Change');
+				saveToDB($(this).attr('field-name'), $(this).val(), '', BaseUrl+'/api/v0.1/update/profile', token);
+				clearTimeout(timeoutId);
+				timeoutId = setTimeout(function() {
+					// Runs 1 second (1000 ms) after the last change
+					//fieldName, filedValue, id, baseUrl, token
+					
+				}, 1000);
+			});
+			$(document).on('click','#education-section',function(e){			
+				fetchEducationInfo(BaseUrl+getEducationTarget());
+			});
+	        if ($(window).width() < 767) {
+                $(".addqual-btn").click(function() {
+                    var html = $(".copy-fields").html();
+                    $(".after-add-more").html(html);
+                });
+                $("body").on("click", ".remove-fields", function() {
+                    $(this).parents(".control-group").remove();
+                });
+
+                $('.bhoechie-tab-menu .list-group a').click(function() {
+                    $("html,body").animate({
+                        scrollTop: 650
+                    }, 600);
+                    return false;
+                });
+            }
+        });
+
+    </script>
+
+    <script>
+        $(function() {
+            var scntDiv = $('#verify_contact_list');
+            $('.more_contact_fields').on('click', function() {
+                $(' <li><div class="row"><div class="col-md-4"><input type="text" class="form-control" id="InputUsername" placeholder=""></div><div class="col-md-8"><div class="save-verify-hidden"><h4>save and verify <span class="remlist"><i class="fa fa-times"></i></span></h4></div></div></div></li>').appendTo(scntDiv);
+                i++;
+                return false;
+            });
+        });
+        $(function() {
+            var scntDiv1 = $('#verify_email_list');
+            $('.more_contact_fields_1').on('click', function() {
+                $(' <li><div class="row"><div class="col-md-4"><input type="text" class="form-control"  id="InputUsername" placeholder=""></div><div class="col-md-8"><div class="save-verify-hidden"><h4>save and verify <span class="remlist"><i class="fa fa-times"></i></span></h4></div></div></div></li>').appendTo(scntDiv1);
+                i++;
+                return false;
+            });
+        });
+
+    </script>
+
+    <script>
+        function ekUpload() {
+            function Init() {
+
+                console.log("Upload Initialised");
+
+                var fileSelect = document.getElementById('file-upload'),
+                    fileDrag = document.getElementById('file-drag'),
+                    submitButton = document.getElementById('submit-button');
+
+                fileSelect.addEventListener('change', fileSelectHandler, false);
+
+                // Is XHR2 available?
+                var xhr = new XMLHttpRequest();
+                if (xhr.upload) {
+                    // File Drop
+                    fileDrag.addEventListener('dragover', fileDragHover, false);
+                    fileDrag.addEventListener('dragleave', fileDragHover, false);
+                    fileDrag.addEventListener('drop', fileSelectHandler, false);
+                }
+            }
+
+            function fileDragHover(e) {
+                var fileDrag = document.getElementById('file-drag');
+
+                e.stopPropagation();
+                e.preventDefault();
+
+                fileDrag.className = (e.type === 'dragover' ? 'hover' : 'modal-body file-upload');
+            }
+
+            function fileSelectHandler(e) {
+                // Fetch FileList object
+                var files = e.target.files || e.dataTransfer.files;
+
+                // Cancel event and hover styling
+                fileDragHover(e);
+
+                // Process all File objects
+                for (var i = 0, f; f = files[i]; i++) {
+                    parseFile(f);
+                    uploadFile(f);
+                }
+            }
+
+            // Output
+            function output(msg) {
+                // Response
+                var m = document.getElementById('messages');
+                m.innerHTML = msg;
+            }
+
+            function parseFile(file) {
+
+                console.log(file.name);
+                output(
+                    '<strong>' + encodeURI(file.name) + '</strong>'
+                );
+
+                // var fileType = file.type;
+                // console.log(fileType);
+                var imageName = file.name;
+
+                var isGood = (/\.(?=gif|jpg|png|jpeg)/gi).test(imageName);
+                if (isGood) {
+                    document.getElementById('start').classList.add("hidden");
+                    document.getElementById('response').classList.remove("hidden");
+                    document.getElementById('notimage').classList.add("hidden");
+                    // Thumbnail Preview
+                    document.getElementById('file-image').classList.remove("hidden");
+                    document.getElementById('file-image').src = URL.createObjectURL(file);
+                } else {
+                    document.getElementById('file-image').classList.add("hidden");
+                    document.getElementById('notimage').classList.remove("hidden");
+                    document.getElementById('start').classList.remove("hidden");
+                    document.getElementById('response').classList.add("hidden");
+                    document.getElementById("file-upload-form").reset();
+                }
+            }
+
+            function setProgressMaxValue(e) {
+                var pBar = document.getElementById('file-progress');
+
+                if (e.lengthComputable) {
+                    pBar.max = e.total;
+                }
+            }
+
+            function updateFileProgress(e) {
+                var pBar = document.getElementById('file-progress');
+
+                if (e.lengthComputable) {
+                    pBar.value = e.loaded;
+                }
+            }
+
+            function uploadFile(file) {
+
+                var xhr = new XMLHttpRequest(),
+                    fileInput = document.getElementById('class-roster-file'),
+                    pBar = document.getElementById('file-progress'),
+                    fileSizeLimit = 1024; // In MB
+                if (xhr.upload) {
+                    // Check if file is less than x MB
+                    if (file.size <= fileSizeLimit * 1024 * 1024) {
+                        // Progress bar
+                        pBar.style.display = 'inline';
+                        xhr.upload.addEventListener('loadstart', setProgressMaxValue, false);
+                        xhr.upload.addEventListener('progress', updateFileProgress, false);
+
+                        // File received / failed
+                        xhr.onreadystatechange = function(e) {
+                            if (xhr.readyState == 4) {
+                                // Everything is good!
+
+                                // progress.className = (xhr.status == 200 ? "success" : "failure");
+                                // document.location.reload(true);
+                            }
+                        };
+
+                        // Start upload
+                        xhr.open('POST', document.getElementById('file-upload-form').action, true);
+                        xhr.setRequestHeader('X-File-Name', file.name);
+                        xhr.setRequestHeader('X-File-Size', file.size);
+                        xhr.setRequestHeader('Content-Type', 'multipart/form-data');
+                        xhr.send(file);
+                    } else {
+                        output('Please upload a smaller file (< ' + fileSizeLimit + ' MB).');
+                    }
+                }
+            }
+            // Check for the various File API support.
+            if (window.File && window.FileList && window.FileReader) {
+                Init();
+            } else {
+                document.getElementById('file-drag').style.display = 'none';
+            }
+        }
+        ekUpload();
+    </script>
+{% endblock %}

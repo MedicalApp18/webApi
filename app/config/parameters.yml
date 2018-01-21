@@ -1,0 +1,15 @@
+# This file is auto-generated during the composer install
+parameters:
+    database_host: 127.0.0.1
+    database_port: null
+    database_name: app_app
+    database_user: root
+    database_password: root
+    mailer_transport: gmail
+    mailer_host: smtp.gmail.com
+    mailer_user: ossroot.test@gmail.com
+    mailer_password: a5551212$
+    locale: en
+    secret: 71bf659efc0913f4ef5d00289dc7f8ccadec9008
+    
+    api_url: http://dev.pro-app.com/app_dev.php/

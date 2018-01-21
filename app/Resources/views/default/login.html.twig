@@ -1,0 +1,306 @@
+
+{% extends 'base.html.twig' %}
+{% block title %}Login{% endblock %}
+{% block stylesheets %}
+    <link rel="stylesheet" href="{{ asset('bundles/css/bootstrap.min.css')}}" />
+	<link rel="stylesheet" href="http://fontawesome.io/assets/font-awesome/css/font-awesome.css" />
+	<link rel="stylesheet" href="{{ asset('bundles/css/login-form.css')}}" />
+{% endblock %}
+{% block body %}
+    <div class="main">
+		<div class="login-form">
+			<div class="login-right">
+				<div class="sap_tabs">
+					<div id="horizontalTab" style="display: block; width: 100%; margin: 0px;">
+						<ul class="resp-tabs-list">
+							<li class="resp-tab-item" aria-controls="tab_item-0" role="tab"><span>Login</span></li>
+							<li class="resp-tab-item" aria-controls="tab_item-1" role="tab"><label>/</label><span>Sign up</span></li>
+							<div class="clear"> </div>
+						</ul>				  	 
+						<div class="resp-tabs-container">
+							<div class="tab-1 resp-tab-content" aria-labelledby="tab_item-0">
+								<div id="login-msg"></div>
+								<div class="login-top" id="main-login">
+									<div id="password-error" style="color: red; display: none;"> password is wrong</div>
+									<form>
+										<div class="login-field">
+											<i class="fa fa-user" aria-hidden="true"></i>
+											<input type="text" class="email" name="user" id="login_userid" placeholder="Mobile Number/ Email Id" required=""/>
+										</div>
+										<div class="login-field">
+											<i class="fa fa-key" aria-hidden="true"></i>
+											<input type="password" name="pass" id="pass" class="password" placeholder="Password" required=""/>		
+										</div>
+									</form>
+									<div class="login-text">
+										<ul>
+											<li><label><input type="checkbox" id="otp_flow" name="otp_flow" value="Remember-Me" /> Login with OTP instead</label></li>
+										</ul>
+									</div>
+									<div class="login-bottom login-bottom1">
+										<div class="submit">
+											<form>
+												<input type="submit" id="loginUser" value="LOG IN"/>
+											</form>
+										</div>
+										<div class="clear"></div>
+									</div>	
+								</div>
+								<div id="check-login-otp" style="display: none;">
+									<form>
+										<input type="hidden" name="otp_login_user_mobile" id="otp_login_user_mobile" />
+										<div class="login-field">
+											<i class="fa fa-bell" aria-hidden="true"></i>
+												<input type="text" name="otp_login" id="otp_login" placeholder="Enter OTP" />
+										</div>
+										<div class="login-bottom login-bottom1">
+										<div class="submit">
+											<form>
+												<input type="submit" name="login" id="loginUsingOTP" value="Login" />
+											</form>
+										</div>
+										<div class="clear"></div>
+									</div>
+									</form>	
+								</div>
+							</div>
+							<div class="tab-1 resp-tab-content" aria-labelledby="tab_item-1">
+								<div id="register-msg"></div>
+								<div id="check-register-otp" style="display: none;">
+									<form>
+										<input type="hidden" name="otp_user_mobile" id="otp_user_mobile" />
+										<div class="login-field">
+											<i class="fa fa-bell" aria-hidden="true"></i>
+											<input type="text" name="otp_register" id="otp_register" placeholder="Enter OTP" />
+										</div>
+										<input type="button" name="login" id="loginRegisterOTP" class="login homehealth-submit" value="Login" />
+									</form>	
+								</div>
+								<div class="login-top sign-top" id="register-user">
+									<form>
+										<div class="login-field">
+										<i class="fa fa-user" aria-hidden="true"></i>
+										<input type="text" class="name active" name="full_name" id="full_name" placeholder="Full Name" required=""/>
+										</div>
+										<div class="login-field">
+											<i class="fa fa-mobile" aria-hidden="true"></i>
+										<input type="text" class="mobile" name="mobile_number" id="mobile_number" placeholder="Mobile Number" required=""/>
+										</div>
+										<div class="login-field">
+										<i class="fa fa-envelope" aria-hidden="true"></i>
+										<input type="text" class="email" name="email" id="email" placeholder="Email" required=""/>
+										</div>
+										<div class="login-field">
+											<i class="fa fa-key" aria-hidden="true"></i>
+										<input type="password" class="password" name="create_pass" id="user_password" placeholder="Create Password" required=""/>		
+										</div>
+									</form>
+									<div class="login-bottom">
+										<div class="submit">
+											<form>
+												<input type="submit" id="registerUser" value="SEND OTP"/>
+											</form>
+										</div>
+										<div class="clear"></div>
+									</div>		
+								</div>
+							</div>
+						</div>							
+					</div>	
+				</div>
+			</div>
+		</div>
+	</div>
+{% endblock %}
+{% block javascripts %}
+	<script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+    <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+	<script type="text/javascript" src="{{ asset('bundles/js/bootstrap.min.js')}}"></script>
+	<script type="text/javascript" src="{{ asset('bundles/js/easyResponsiveTabs.js')}}"></script>
+    <script type="text/javascript">
+    var BaseUrl = '{{ app.request.getSchemeAndHttpHost() }}'+'/app_dev.php';
+    $(document).ready(function() {
+		$('#horizontalTab').easyResponsiveTabs({
+			type: 'default', //Types: default, vertical, accordion           
+			width: 'auto', //auto or any width like 600px
+			fit: true   // 100% fit in a container
+		});
+		$(document).on('click','#login',function(e){
+			$("#register-form").hide();
+			$("#login-form").show();
+			$("#register > a ").removeClass ( 'login-register-link-active' );
+			$("#login > a ").addClass ( 'login-register-link-active' );
+		});
+		$(document).on('click','#register',function(e){
+			$("#register-form").show();
+			$("#login-form").hide();
+			$("#login > a ").removeClass ( 'login-register-link-active' );
+			$("#register > a ").addClass ( 'login-register-link-active' );
+		});
+		$(document).on('change','#otp_flow',function(e){
+			if($(this).is(":checked")) {
+				$('#pass').addClass('field-disabled');
+				$("#pass").prop("disabled", true);
+			}else{
+				$('#pass').removeClass('field-disabled');
+				$("#pass").prop("disabled", false);
+			}
+		});
+		/* For Login */
+		$(document).on('click','#loginUsingOTP',function(e){
+            $.ajax({
+				type:'POST',
+				url:BaseUrl+'/api/v0.1/login',
+				async: false,
+				data: {
+					username: $('#otp_login_user_mobile').val(),
+					otp: $('#otp_login').val()
+				},
+				success:function(responsedata){
+					var response = $.parseJSON(responsedata);
+					setUserToken(response['token'], e);
+					e.preventDefault();
+				}
+			});
+		});
+		$(document).on('click','#loginRegisterOTP',function(e){
+            $.ajax({
+				type:'POST',
+				url:BaseUrl+'/api/v0.1/login',
+				async: false,
+				data: {
+					username: $('#otp_user_mobile').val(),
+					otp: $('#otp_register').val()
+				},
+				success:function(responsedata){
+					var response = $.parseJSON(responsedata);
+					var status = response['status'];
+					if(status == 200){
+						setUserToken(response['token'], e);
+						e.preventDefault();
+					}else{
+						$("#password-error").show();
+					}
+					return false;
+				}
+			});
+		});
+		$(document).on('click','#loginUser',function(e){
+			var otpChecked = $('#otp_flow').is(":checked");
+			if(!otpChecked) {
+				
+				/*Check User name and password */
+				$.ajax({
+					type:'POST',
+					url:BaseUrl+'/api/v0.1/login',
+					async: false,
+					data: {
+						username: $('#login_userid').val(),
+						password: $('#pass').val()
+					},
+					success:function(responsedata){
+                        var response=$.parseJSON(responsedata);
+                        var status = response['status'];
+						if(status == 200){
+							setUserToken(response['token'], e);
+							e.preventDefault();
+                        }else{
+                            $("#password-error").show();
+                        }
+						e.preventDefault();
+						return false;
+					}
+				});
+			}else{
+			/* Send OTP to user for login */
+				$.ajax({
+					type:'POST',
+					url:BaseUrl+'/api/v0.1/send/otp',
+					async: false,
+					data: {
+						username: $('#login_userid').val(),
+					},
+					success:function(responsedata){
+						var response = $.parseJSON(responsedata);
+						var statusCode = response['status'];
+						$("#login-msg").html();
+						$("#login-msg").removeClass();
+						if(statusCode == 201){
+							$("#login-msg").addClass('decline_msg');
+							$("#login-msg").html(response['message']);	
+						}else if(statusCode == 200){
+							$("#login-msg").addClass('success_msg');
+							$("#login-msg").html(response['message']);
+							$("#main-login").hide();
+							$("#otp_login_user_mobile").val('');
+							$("#otp_login_user_mobile").val($('#login_userid').val());
+							$("#check-login-otp").show();
+						}
+						e.preventDefault();
+						return false;
+					}
+				});
+			}
+		});
+		/* For register */
+		$(document).on('click','#registerUser',function(e){
+			$.ajax({
+				type:'POST',
+				url:BaseUrl+'/app_dev.php/api/v0.1/register',
+				async: false,
+				data: {
+					fullName: $('#full_name').val(),
+					mobileNumber: $('#mobile_number').val(),
+					email: $('#email').val(),
+					password: $('#user_password').val()
+				},
+				success:function(data){
+					var response = $.parseJSON(data);
+					var statusCode = response['status'];
+					$("#register-msg").html();
+					$("#register-msg").removeClass();
+					if(statusCode == 201){
+						$("#register-msg").addClass('decline_msg');
+						$("#register-msg").html(response['message']);	
+					}else if(statusCode == 205){
+						$("#register-msg").addClass('decline_msg');
+						$("#register-msg").html(response['message']);	
+					}else if(statusCode == 200){
+						$("#register-msg").addClass('success_msg');
+						$("#register-msg").html(response['message']);
+						$("#register-user").hide();
+						$("#otp_user_mobile").val('');
+						$("#otp_user_mobile").val($('#mobile_number').val());
+						$("#check-register-otp").show();
+					}
+					e.preventDefault();
+					return false;
+				}
+		    });
+			$.ajax({
+				type:'POST',
+				url:BaseUrl+'/api/v0.1/login',
+				async: false,
+				data: {
+					username: $('#otp_user_mobile').val(),
+					otp: $('#otp_register').val()
+				},
+				success:function(responsedata){
+					var response = $.parseJSON(responsedata);
+					e.preventDefault();
+					return false;
+				}
+			});
+			e.preventDefault();
+			return false;
+		});
+	});
+	function setUserToken(token, event){
+		var redirectPage = '/app_dev.php/set/token/' + token;
+		window.location = redirectPage;
+		event.preventDefault();
+		//window.location = 'app_dev.php/set/token/' + token;
+	}
+	</script>
+{% endblock %}

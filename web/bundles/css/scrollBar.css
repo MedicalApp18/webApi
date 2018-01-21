@@ -1,0 +1,43 @@
+.sb-container{
+    position: relative;
+    overflow: hidden;
+    padding-right: 10px;
+}
+.sb-content {
+  height:100%;
+  width: 120%;
+  padding-right: 20%;
+  overflow-y: scroll;
+  box-sizing:border-box;
+}
+.sb-scrollbar-container {
+    position: absolute;
+    right: 5px;
+    bottom: 5px;
+    top: 5px;
+    width: 10px;
+}
+.sb-container-noscroll .sb-scrollbar-container {
+    right: -20px;
+}
+
+#process_activity_timeline .sb-scrollbar {
+  position: absolute;
+  right: 0;
+  height: 30px;
+  width: 3px;
+  border-radius: 10px;
+  background: #dee1ee;
+}
+
+#process_activity_timeline .sb-scrollbar:hover {
+    background: rgba(0, 0, 0, 0.5);
+}
+.scrollbar-container {
+  height: 300px;
+  max-width:100%;
+  padding: 5px 0;
+  margin: auto;
+}
+
+

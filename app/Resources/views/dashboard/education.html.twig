@@ -1,0 +1,141 @@
+<section id="education-specialization">
+	<div class="section-content">
+		<h1 class="section-header">Education *</h1>
+	</div>
+	<div class="contact-section">
+		<form>
+			<div class="row">
+				<div id="fields" class="col-md-12 form-line">
+					{% if eduLists|length > 0 %}
+					<div class="form-group control-group after-add-more">
+						{% for eduList in eduLists %}
+						<div class="row">
+							<div class="col-md-4">
+								<label for="exampleInputUsername">Qualitication</label>
+								<select class="form-control" field-name="degree_id" edu-id="{{eduList.id}}">
+									<option value=""></option>
+									{% for degree in app.session.get('degreeData') %}
+										{% if degree.id == eduList.degree['id'] %}
+											<option value="{{ degree.id }}" selected="selected">{{ degree.name|e }}</option>
+										{% else %}
+											<option value="{{ degree.id }}">{{ degree.name|e }}</option>
+										{% endif %}
+									{% endfor %}
+									</select>
+							</div>
+							<div class="col-md-4">
+								<label for="InputUsername">College</label>
+								<select class="form-control" field-name="college_id" edu-id="{{eduList.id}}">
+									<option value=""></option>
+									{% for college in app.session.get('collegeData') %}
+										{% if college.id == eduList.college['id'] %}
+											<option value="{{ college.id }}" selected="selected">{{ college.name|e }}</option>
+										{% else %}
+											<option value="{{ college.id }}">{{ college.name|e }}</option>
+										{% endif %}
+									{% endfor %}
+									</select>
+							</div>
+							<div class="col-md-4">
+								<label for="InputUsername">Compleation year</label>
+								<select class="form-control" field-name="year_id" edu-id="{{eduList.id}}">
+								<option value=""></option>
+									{% for eduYear in app.session.get('eduYearData') %}
+										{% if eduYear.id == eduList.year['id'] %}
+											<option value="{{ eduYear.id }}" selected="selected">{{ eduYear.name|e }}</option>
+										{% else %}
+											<option value="{{ eduYear.id }}">{{ eduYear.name|e }}</option>
+										{% endif %}
+									{% endfor %}
+								</select>
+							</div>
+						</div>
+						{% endfor %}
+					</div>
+					{%else%}
+					<div class="form-group copy-fields pos-relative">
+						<div class="row">
+							<div class="col-md-4">
+								<label for="exampleInputUsername">Qualitication</label>
+								<select class="form-control">
+									<option value=""></option>
+									{% for degree in app.session.get('degreeData') %}
+										<option value="{{ degree.id }}">{{ degree.name|e }}</option>
+									{% endfor %}
+								</select>
+							</div>
+							<div class="col-md-4">
+								<label for="InputUsername">College</label>
+								<select class="form-control">
+								<option value=""></option>
+									{% for college in app.session.get('collegeData') %}
+										<option value="{{ college.id }}">{{ college.name|e }}</option>
+									{% endfor %}
+								</select>
+							</div>
+							<div class="col-md-4">
+								<label for="InputUsername">Compleation year</label>
+								<select class="form-control">
+								<option value=""></option>
+									{% for eduYear in app.session.get('eduYearData') %}
+										<option value="{{ eduYear.id }}">{{ eduYear.name|e }}</option>
+									{% endfor %}
+								</select>
+							</div>
+							
+						</div>
+					</div>
+					{%endif%}
+				</div>
+				<div class="col-md-12">
+					<a class="btn addqual-btn"><i class="fa fa-plus"></i> add qualification</a>
+				</div>
+			</div>
+		</form>
+	</div>
+</section>
+<hr/>
+<section>
+	<div class="row">
+		<div class="col-md-12">
+			<div id="contact-detail">
+				<div class="section-content">
+					<h1 class="section-header">Specialization *</h1>
+				</div>
+				<div class="bluebg-txt">
+					At least one of your listed specializations should match your qualification for your profile to go live. <a href="">Know more</a> Also, Specializations with unmapped qualifications won't yield any search results.
+				</div>
+				<div class="form-group mrgn_top">
+					<div class="specialization_selected">
+						<h5>2 specialization selected</h5>
+						<div class="tags">
+							<a href="#">Functional Ortho&nbsp;&nbsp;<span><i class="fa fa-times"></i></span></a><a href="#">Cardiologist&nbsp;&nbsp;<span><i class="fa fa-times"></i></span></a>
+						</div>
+					</div>
+					<div class="add_specialization">
+						<small>Add Specialization</small>
+						<form class="form-horizontal" role="form">
+							<input type="text" class="form-control" />
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
+{% block javascripts %}
+	<script type="text/javascript">
+		$(document).ready(function() {
+			$('#education-specialization select').on('change', function() {
+				//console.log('Textarea Change');
+				saveToDB($(this).attr('field-name'), $(this).val(), $(this).attr('edu-id'), BaseUrl+'/api/v0.1/update/education', token);
+				clearTimeout(timeoutId);
+				timeoutId = setTimeout(function() {
+					// Runs 1 second (1000 ms) after the last change
+					//fieldName, filedValue, id, baseUrl, token
+					
+				}, 1000);
+			});
+		});
+	</script>
+{% endblock %}

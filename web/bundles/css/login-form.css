@@ -1,0 +1,232 @@
+
+
+
+@import url('https://fonts.googleapis.com/css?family=Oxygen:300,400,700');
+
+/*--end reset--*/
+body{
+	font-family: 'Oxygen', sans-serif;
+	background: url(../images/banner.jpg)repeat 0px 0px;
+	background-attachment: fixed;
+	margin: 0;
+	padding: 0;
+}
+.field-disabled{
+	background-color: #787887 !important;
+}
+.success_msg{ color: green; text-align: center; }
+.decline_msg{ color: red; text-align: center; }
+.login-field{position: relative;}
+.login-field .fa {
+    position: absolute;
+    top: 24px;
+    left: 10px;
+    color: #fff;
+    transition: color 0.3s ease-out;
+}
+/*-- main --*/
+.main {
+	font-family: 'Oxygen', sans-serif;
+  transform: translate(-50%, -50%);
+	position: fixed;
+	left: 50%;
+	top: 50%;
+	width: 40%;
+}
+
+::-webkit-input-placeholder{
+	color:#fff;
+}
+
+:-moz-placeholder { /* Firefox 18- */
+   color: #fff; 
+}
+
+::-moz-placeholder {  /* Firefox 19+ */
+   color: #fff;  
+}
+
+:-ms-input-placeholder {  
+   color: #fff;  
+}
+
+
+
+.login-right {
+	min-height: 430px;
+    background:rgba(93, 125, 189, 0.3);
+    padding: 5% 3% 3%;
+	box-shadow: 0px 1px 0px rgba(255,255,255,0.2) inset, 0px 0px 2px rgba(0,0,0,0.5);
+	background-image: -webkit-linear-gradient(90deg, #191724, #211f2d);	
+}
+
+.logo img {
+    border-radius: 50%;
+    border: 4px solid #fff;
+}
+.login-left h2 {
+    font-size: 1.8em;
+    color: #fff;
+    margin-top: 0.5em;
+}
+.login-left p {
+    font-size: 0.9em;
+    color: #fff;
+    margin-top: 0.5em;
+}
+.logo-bottom {
+    margin-top: 2em;
+}
+.social-icons {
+    margin-top: 2em;
+}
+.social-icons ul li {
+    display: inline-block;
+}
+.social-icons ul li a {
+    display: block;
+    width: 65px;
+    height: 36px;
+    text-align: center;
+    background-color: #3B5998;
+}
+.social-icons ul li a.twt {
+    background-color: #55acee;
+}
+.social-icons ul li a.ggl {
+    background-color: #dc4e41;
+}
+.social-icons ul li a img {
+    padding-top: 0.5em;
+}
+.social-icons ul li a:hover img {
+    transform: rotatey(360deg);
+    transition: .5s all;
+}
+.login-right input[type="text"], .login-right input[type="password"] {
+    outline: none;
+    color: #fff;
+    padding: 10px 0 10px 30px;
+    margin:10px 0;
+    width: 100%;
+	background: transparent;
+    border:1px solid #8FA4B9;
+    -webkit-appearance: none;
+}
+
+.login-right input[type="text"]:hover, .login-right input[type="password"]:hover{
+	 outline: none;
+    color: #fff;
+	background: transparent;
+    border:1px solid #8FA4B9;
+    -webkit-appearance: none;
+    border-color:rgba(132, 141, 215, 0.52);
+}
+.login-top {
+    padding: 1em;
+    margin-top: 0.8em;
+}
+.login-top.sign-top {
+    margin-top: 0.5em;
+}
+
+.login-text {
+    margin-top: 2em;
+}
+.login-text ul{padding: 0; list-style: none;}
+.login-text label{color: #fff;}
+
+.login-bottom ul {
+    padding: 0;
+    float: left;
+	list-style: none;
+    margin-left: 2.2em;
+}
+.login-bottom ul li{
+	list-style:none;
+	display:inline-block;
+	vertical-align: middle;
+	margin-left: 3px;
+}
+
+
+.submit input[type="submit"] {
+    font-size: 13px;
+	margin: 10px 0 0;
+    color: #fff;
+	width: 100%;
+    background: #08b2e3;
+    border: 2px solid #08b2e3;
+    outline: none;
+    cursor: pointer;
+    padding: 10px 13px;
+}
+.submit input[type="submit"]:hover{
+	background:#08b2e3;
+	color:#fff;
+	transition: 0.5s all ease;
+	-webkit-transition: 0.5s all ease;
+	-moz-transition: 0.5s all ease;
+	-o-transition: 0.5s all ease;
+	-ms-transition: 0.5s all ease;
+}
+
+.resp-tabs-list {
+    list-style: none;
+    padding-left: 19px;
+    text-align: left;
+}
+.resp-tab-item {
+    color: #d8dcdf;
+    font-size: 18px;
+    cursor: pointer;
+    padding: 0px 0px;
+    display: inline-block;
+    margin: 0;
+    text-align: center;
+    list-style: none;
+    outline: none;
+    -webkit-transition: all 0.3s ease-out;
+    -moz-transition: all 0.3s ease-out;
+    -ms-transition: all 0.3s ease-out;
+    -o-transition: all 0.3s ease-out;
+    transition: all 0.3s ease-out;
+    margin: 0 5px;
+}
+.resp-tab-active {
+    text-shadow: none;
+    color: #08b2e3;
+}
+.resp-tabs-container {
+	padding: 0px;
+	clear: left;
+}
+h2.resp-accordion {
+	cursor: pointer;
+	padding: 5px;
+	display: none;
+}
+.resp-tab-content {
+	display: none;
+}
+.resp-content-active, .resp-accordion-active {
+   display: block;
+}
+.resp-tab-item label{
+	margin-right:8px;
+}
+
+
+@media(max-width:768px){
+.main{width: 65%;}
+
+}
+
+@media(max-width:600px){
+	.main{width: 95%;}
+.login-form {
+    width:100%;
+}
+	.login-right input[type="text"], .login-right input[type="password"]{width: 100%;}
+}
+

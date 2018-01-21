@@ -1,0 +1,124 @@
+{% extends 'dashboard/base.html.twig' %}
+{% block title %}{{ app.session.get('login_user_name') }} - Dashboard{% endblock %}
+{% block stylesheets %}
+	{{ parent() }}
+{% endblock %}
+{% block body %}
+	{{ parent() }}
+	
+	<section id="broadcasts-panel" class="main-content">
+        <div class="container-fluid">
+
+            <div class="row">
+                <div class="col-lg-12">
+                    <h1 class="myprofile-title">my profile</h1>
+
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-8 col-xs-12">
+                    <div class="white-box">
+                        <div class="user-bg"> <img width="100%" alt="user" src="{{asset('bundles/images/medical_translation.png')}}">
+                            <div class="overlay-box">
+                                <div class="user-content">
+                                    <a href="javascript:void(0)"><img src="{{asset('bundles/images/user-img2.jpg')}}" class="thumb-lg img-circle" alt="img"></a>
+                                    <h4 class="text-white">Dr. {{ app.session.get('login_user_name') }}</h4>
+                                    <h5 class="text-white">MBBS, M.D Cardiologist</h5>
+                                    <span class="live_green">live</span>
+                                    <a href="{{ path('user_profile') }}"><span class="edit-picture"><i class="fa fa-pencil" aria-hidden="true"></i></span></a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="user-btm-box">
+                            <div class="col-md-12 col-sm-4 text-center">
+                                <h1>100% Profile Complete</h1>
+                                <h2>Congratulations!<br>Your profile is complete</h2>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="profile-strength">
+                        <h1>profile strength: <strong>Intermediate</strong></h1>
+                        <p style="width:99%; margin:5px 0 0;" data-value="99">&nbsp;</p>
+                        <progress max="100" value="99" class="html5">
+                            <div class="progress-bar">
+                                <span style="width: 20%">20%</span>
+                            </div>
+                        </progress>
+                    </div>
+                </div>
+                <div class="col-md-4 col-xs-12">
+					 <div class="add-skills box">
+                        <ul>
+                            <li>
+                                <span class="check-sign">
+													<a href="index.html#"><i class="fa fa-check"></i>&nbsp;</a>
+												</span>
+                                <span class="desc">add skills</span>
+
+                                <a class="add-profil" href="index.html#"><i class="fa fa-plus"></i></a>
+                            </li>
+                            <li>
+                                <span class="check-sign">
+													<a href="index.html#"><i class="fa fa-check"></i>&nbsp;</a>
+												</span>
+                                <span class="desc">add education</span>
+                                <a class="add-profil" href="index.html#"><i class="fa fa-plus"></i></a>
+                            </li>
+                            <li>
+                                <span class="check-sign">
+													<a href="index.html#"><i class="fa fa-check"></i>&nbsp;</a>
+												</span>
+                                <span class="desc">add clinic</span>
+
+                                <a class="add-profil" href="index.html#"><i class="fa fa-plus"></i></a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="smallstat box">
+                        <h2>Rakesh Skin Care</h2>
+                        <div class="warnings-msg"><i class="fa fa-exclamation-triangle" aria-hidden="true"></i>&nbsp;2 unvarified doctors</div>
+                        <!--						<span class="title">Thakur Dental Clinic</span>-->
+                        <!--                        <div class="progress-bar progress-bar-white" style="margin-top:10px; margin-bottom:10px; clear:both;" role="progressbar" data-transitiongoal="86" aria-valuenow="86" style="width: 86%;">86%</div>-->
+                        <p style="width:80%; margin:5px 0 0;" data-value="80">&nbsp;</p>
+                        <progress max="100" value="80" class="html5">
+                            <div class="progress-bar">
+                                <span style="width: 20%">20%</span>
+                            </div>
+                        </progress>
+                        <button class="btn complete-profile-btn">complete now</button>
+                    </div>
+
+                    <div class="smallstat box">
+                        <h2>thakur dental clinic</h2>
+                        <div class="warnings-msg"><i class="fa fa-exclamation-triangle" aria-hidden="true"></i>&nbsp;2 unvarified doctors</div>
+                        <!--						<span class="title">Thakur Dental Clinic</span>-->
+
+                        <p style="width:20%; margin:5px 0 0;" data-value="20">&nbsp;</p>
+                        <progress max="100" value="20" class="html5">
+                            <div class="progress-bar">
+                                <span style="width: 20%">20%</span>
+                            </div>
+                        </progress>
+                        <button class="btn complete-profile-btn">complete now</button>
+                    </div>
+
+                    <div class="smallstat box">
+                        <h2>Anand Polyclinic</h2>
+                        <div class="warnings-msg"><i class="fa fa-exclamation-triangle" aria-hidden="true"></i>&nbsp;2 unvarified doctors</div>
+                        <!--						<span class="title">Thakur Dental Clinic</span>-->
+
+                        <p style="width:70%; margin:5px 0 0;" data-value="70">&nbsp;</p>
+                        <progress max="100" value="70" class="html5">
+                            <div class="progress-bar">
+                                <span style="width: 70%">20%</span>
+                            </div>
+                        </progress>
+                        <button class="btn complete-profile-btn">complete now</button>
+                    </div>
+        </div>
+    </section>
+{% endblock %}
+{% block javascripts %}
+	{{ parent() }}
+{% endblock %}
