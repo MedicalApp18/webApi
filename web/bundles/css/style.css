@@ -19,6 +19,8 @@ body{font-family: 'Open Sans', sans-serif;}
 	padding: 10px 0;
 }
 
+.anand{background: red;}
+
 #bs-example-navbar-collapse-1 .navbar-nav li {}
 
 #nav-wrapper .navbar-nav {
