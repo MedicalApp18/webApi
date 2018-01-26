@@ -61,11 +61,13 @@ class WebController extends Controller
 		$collegeData= $curl->curlGetData("api/v0.1/list/college", $token);
 		$degreeData = $curl->curlGetData("api/v0.1/list/degree", $token);
 		$eduYearData= $curl->curlGetData("api/v0.1/list/edu_year", $token);
+		$stateData	= $curl->curlGetData("api/v0.1/list/state", $token);
 		$this->get('session')->set('cityArray', $cityData['data']);
 		$this->get('session')->set('specializationData', $specializationData['data']);
 		$this->get('session')->set('collegeData', $collegeData['data']);
 		$this->get('session')->set('degreeData', $degreeData['data']);
 		$this->get('session')->set('eduYearData', $eduYearData['data']);
+		$this->get('session')->set('stateData', $stateData['data']);
 		$this->get('session')->set('token', $token);
 		$this->get('session')->set('login_user_name', $checkToken['user']->getFullName());
         $uri    = $this->get('router')->generate('dashboard');

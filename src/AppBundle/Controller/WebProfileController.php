@@ -42,8 +42,8 @@ class WebProfileController extends Controller
 			$data['menu_select']  = 'home';
 			$data['profileData']  = $profileData['data'];
 			$data['photoURL']  	  = $profileData['photoURL'];
-			print'<pre>';
-			print_r($data);die;
+			//print'<pre>';
+			//print_r($data);die;
 			//print_r($this->get('session')->get('token'));die;
 			return $this->render('dashboard/profile.html.twig', $data);	
 		}else{

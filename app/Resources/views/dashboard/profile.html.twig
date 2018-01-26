@@ -99,7 +99,16 @@
 										</div>
 										<div class="form-group">
 											<label for="InputState">State*</label>
-											<input type="text" class="form-control" id="InputState" placeholder="State">
+											<select data-placeholder="State" field-name="stateId" class="form-control chosen-select" tabindex="2">
+												<option value=""></option>
+												{% for state in app.session.get('stateData') %}
+													{% if state.id == profileData.stateId %}
+														<option value="{{ state.id }}" selected="selected">{{ state.name|e }}</option>
+													{% else %}
+														<option value="{{ state.id }}">{{ state.name|e }}</option>
+													{% endif %}
+												{% endfor %}
+											</select>
 										</div>
 									</div>
 									<div class="col-md-12">

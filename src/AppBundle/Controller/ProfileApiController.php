@@ -39,7 +39,7 @@ class ProfileApiController extends Controller
 		if($checkToken['verify'] == 1){
 			$baseurl = $request->getScheme() . '://' . $request->getHttpHost() . $request->getBasePath();
 			$photo= $checkToken['user']->getProfilePhotoPath();
-			$result['photoURL'] = $baseurl.$photo;
+			$result['photoURL'] = $baseurl.'/'.$photo;
 			$result['data']     = $checkToken['user'];
             $result['status']   = "200";
 		}else{
@@ -150,7 +150,6 @@ class ProfileApiController extends Controller
 		if($checkToken['verify'] == 1){
 			$uploadedFile =  $request->files->get('fileData');
 			$dir 	= $this->get('kernel')->getRootDir() . '/../web/uploads/documents/';
-			$fileinfo = pathinfo($filename);
 			$name 	= uniqid() .'.'.$uploadedFile->getClientOriginalExtension();
 			$uploadedFile->move($dir, $name);
 			$em     = $this->getDoctrine()->getManager();

@@ -109,6 +109,11 @@
         * @ORM\Column(type="text", nullable=true)
         */
         protected $aboutMe;
+        
+        /**
+        * @ORM\Column(type="integer", nullable=true)
+        */
+        protected $state_id=NULL;
 
         public function __construct()
         {
@@ -327,12 +332,12 @@
     public function getProfilePhotoPath()
     {
         return null === $this->profilePhoto
-           ? 'avatar.png'
-           : $this->getUploadDir().'/'.$this->profilePhoto;
+           ? $this->getUploadDir().'avatar.png'
+           : $this->getUploadDir().$this->profilePhoto;
     }
     
     protected function getUploadDir(){
-            return '/uploads/images';
+            return '/uploads/images/';
     }
     
     public function updateData($data, $userObj, $em, $controllerObj){
@@ -347,6 +352,10 @@
         }
         if(isset($data['cityId'])){
             $userObj->setCityId($data['cityId']);
+        }
+        
+        if(isset($data['stateId'])){
+            $userObj->setStateId($data['stateId']);
         }
         if(isset($data['aboutMe'])){
             $userObj->setAboutMe($data['aboutMe']);
@@ -499,5 +508,29 @@
     public function getAboutMe()
     {
         return $this->aboutMe;
+    }
+
+    /**
+     * Set stateId
+     *
+     * @param integer $stateId
+     *
+     * @return User
+     */
+    public function setStateId($stateId)
+    {
+        $this->state_id = $stateId;
+
+        return $this;
+    }
+
+    /**
+     * Get stateId
+     *
+     * @return integer
+     */
+    public function getStateId()
+    {
+        return $this->state_id;
     }
 }

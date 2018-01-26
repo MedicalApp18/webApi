@@ -119,7 +119,7 @@
 	<script type="text/javascript" src="{{ asset('bundles/js/bootstrap.min.js')}}"></script>
 	<script type="text/javascript" src="{{ asset('bundles/js/easyResponsiveTabs.js')}}"></script>
     <script type="text/javascript">
-    var BaseUrl = '{{ app.request.getSchemeAndHttpHost() }}'+'/app_dev.php';
+    var BaseUrl = '{{ app.request.getSchemeAndHttpHost() }}';
     $(document).ready(function() {
 		$('#horizontalTab').easyResponsiveTabs({
 			type: 'default', //Types: default, vertical, accordion           
