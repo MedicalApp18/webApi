@@ -3,6 +3,7 @@
 {% block stylesheets %}
 	{{ parent() }}
 	<link rel="stylesheet" href="{{asset('bundles/css/imageuploadify.min.css') }}">
+	<link rel="stylesheet" href="{{asset('bundles/css/bootstrap-chosen.css') }}">
 {% endblock %}
 {% block body %}
 	{{ parent() }}
@@ -40,7 +41,7 @@
                     <!-- Personal Detail section -->
                     <div class="bhoechie-tab-content active" id="personal-info">
                         <section id="personal-contact">
-                            <div class="section-content">
+							<div class="section-content">
                                 <h1 class="section-header">Personal Detail</h1>
                             </div>
                             <div class="contact-section">
@@ -50,7 +51,9 @@
 											<div class="row">
 												<div class="col-md-3">
 													<label for="exampleInputUsername">Title</label>
-													<select class="form-control"><option>Mr</option><option>Mrs</option></select>
+													<select data-placeholder="Title" class="form-control chosen-select" tabindex="2">
+														<option>Mr</option><option>Mrs</option>
+													</select>
 												</div>
 												<div class="col-md-9">
 													<label for="InputUsername">Name*</label>
@@ -83,7 +86,7 @@
 									<div class="col-md-6">
 										<div class="form-group">
 											<label for="InputCity">City*</label>
-											<select class="form-control" field-name="cityId">
+											<select data-placeholder="City" field-name="cityId" class="form-control chosen-select" tabindex="2">
 												<option value=""></option>
 												{% for city in app.session.get('cityArray') %}
 													{% if city.id == profileData.cityId %}
@@ -116,7 +119,7 @@
 																	<form id="file-upload-form" class="uploader">
 																		<input id="file-upload" type="file" name="fileUpload" accept="image/*" />
 																		<label for="file-upload" id="file-drag">
-																			<img id="file-image"  src="#" alt="Preview" class="img-responsive hidden">
+																			<img id="file-image" src="{{photoURL}}" alt="Preview" class="img-responsive hidden">
 																			<div id="start">
 																			  <i class="fa fa-download" aria-hidden="true"></i>
 																			  <div>Select a file or drag here</div>
@@ -129,7 +132,7 @@
 																				<span>0</span>%
 																			  </progress>
 																			</div>
-																		  </label>
+																		</label>
 																	</form>
 																</div>
 															</li>
@@ -210,69 +213,7 @@
                     <div class="bhoechie-tab-content" id ="education-info">
                     </div>
                     <!-- hotel search -->
-                    <div class="bhoechie-tab-content">
-                        <section id="registration-documents">
-                            <div class="section-content">
-                                <h1 class="section-header">Registration Details *</h1>
-                            </div>
-                            <div class="bluebg-txt">Allied healthcare professionals do not need to enter registration details. <a href="">Know more</a></div>
-                            <div class="contact-section">
-                                <form>
-                                    <div class="row">
-                                        <div id="fields" class="col-md-12 form-line">
-                                            <div class="form-group control-group after-add-more">
-                                                <div class="row">
-                                                    <div class="col-md-4">
-                                                        <label for="exampleInputUsername">Council Registration Number *</label>
-                                                        <input type="text" placeholder="12314562" class="form-control" />
-                                                    </div>
-                                                    <div class="col-md-4">
-                                                        <label for="InputUsername">Council Name *</label>
-                                                        <select class="form-control"><option>Delhi, Homeopathic college</option>
-                                                              <option>Cuttack, Homeopathic college</option></select>
-                                                    </div>
-                                                    <div class="col-md-4">
-                                                        <label for="InputUsername">Year *</label>
-                                                        <select class="form-control">
-                                                        <option>2001</option>
-                                                        <option>2002</option>
-                                                        <option>2004</option>
-                                                        </select>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-12">
-                                            <a class="btn addqual-btn"><i class="fa fa-plus"></i> add registration</a>
-                                        </div>
-                                    </div>
-                                </form>
-                            </div>
-                        </section>
-                        <hr/>
-                        <section>
-                            <div class="row">
-                                <div class="col-md-12">
-                                    <div id="contact-detail">
-                                        <div class="section-content">
-                                            <h1 class="section-header">Documents / Certificates *</h1>
-                                        </div>
-                                        <div class="bluebg-txt">
-                                            Add photo proof for Registration certificate & identity card to publish your profile. We require photo proofs to ensure that only you get access to your profile and nobody else
-                                        </div>
-                                        <div class="form-group">
-											<label for="description"> Doctor Profile Photo&nbsp;<i class="fa fa-info-circle" aria-hidden="true"></i></label>
-											<div class="image-uploader-pan">
-												<form>
-													<input type="file" accept=".xlsx,.xls,image/*,.doc,audio/*,.docx,video/*,.ppt,.pptx,.txt,.pdf" multiple>
-												</form>
-											</div>
-										</div>
-                                    </div>
-                                </div>
-                            </div>
-                        </section>
-                    </div>
+					{{ include('dashboard/add-documnets.html.twig') }}
                     <div class="bhoechie-tab-content">
                         <section id="registration-documents">
                             <div class="section-content">
@@ -310,6 +251,7 @@
             </div>
         </div>
         <div class="bottom-button-pan">
+			<div class="success-msg1 hide">Information Saved!</div>
             <div class="text-right">
                 <button type="button" class="btn btn-hot text-uppercase btn-sm"><a href="http://www.positiwitty.com/">Previous</a></button>
                 <button type="button" class="btn btn-sunny text-uppercase btn-sm">Next</button>
@@ -319,8 +261,13 @@
 {% endblock %}
 {% block javascripts %}
 	{{ parent() }}
+	 <script type="text/javascript">
+		var BaseUrl = '{{ app.request.getSchemeAndHttpHost() }}';
+		var token  = '{{ app.session.get('token') }}';
+	 </script>
 	<script type="text/javascript" src="{{ asset('bundles/js/imageuploadify.js') }}"></script>
 	<script type="text/javascript" src="{{ asset('bundles/js/profile.js') }}"></script>
+	<script type="text/javascript" src="{{ asset('bundles/js/chosen.jquery.js') }}"></script>
 	<script type="text/javascript">
         $(document).ready(function() {
             $('input[type="file"]').imageuploadify();
@@ -336,8 +283,6 @@
         });
     </script>
     <script type="text/javascript">
-		var BaseUrl = '{{ app.request.getSchemeAndHttpHost() }}';
-		var token  = '{{ app.session.get('token') }}';
 		function getEducationTarget() {
             return "{{ path('user_education') }}";
         }
@@ -374,7 +319,12 @@
                 });
             }
         });
-
+		$(function() {
+            $('.chosen-select').chosen();
+            $('.chosen-select-deselect').chosen({
+                allow_single_deselect: true
+            });
+        });
     </script>
 
     <script>
@@ -400,15 +350,11 @@
     <script>
         function ekUpload() {
             function Init() {
-
                 console.log("Upload Initialised");
-
-                var fileSelect = document.getElementById('file-upload'),
+				var fileSelect = document.getElementById('file-upload'),
                     fileDrag = document.getElementById('file-drag'),
                     submitButton = document.getElementById('submit-button');
-
-                fileSelect.addEventListener('change', fileSelectHandler, false);
-
+					fileSelect.addEventListener('change', fileSelectHandler, false);
                 // Is XHR2 available?
                 var xhr = new XMLHttpRequest();
                 if (xhr.upload) {
@@ -418,44 +364,34 @@
                     fileDrag.addEventListener('drop', fileSelectHandler, false);
                 }
             }
-
             function fileDragHover(e) {
-                var fileDrag = document.getElementById('file-drag');
-
+				var fileDrag = document.getElementById('file-drag');
                 e.stopPropagation();
                 e.preventDefault();
-
                 fileDrag.className = (e.type === 'dragover' ? 'hover' : 'modal-body file-upload');
             }
-
             function fileSelectHandler(e) {
                 // Fetch FileList object
                 var files = e.target.files || e.dataTransfer.files;
-
                 // Cancel event and hover styling
                 fileDragHover(e);
-
                 // Process all File objects
                 for (var i = 0, f; f = files[i]; i++) {
                     parseFile(f);
                     uploadFile(f);
                 }
             }
-
             // Output
             function output(msg) {
                 // Response
                 var m = document.getElementById('messages');
                 m.innerHTML = msg;
             }
-
             function parseFile(file) {
-
-                console.log(file.name);
+				console.log(file.name);
                 output(
                     '<strong>' + encodeURI(file.name) + '</strong>'
                 );
-
                 // var fileType = file.type;
                 // console.log(fileType);
                 var imageName = file.name;
@@ -476,15 +412,12 @@
                     document.getElementById("file-upload-form").reset();
                 }
             }
-
             function setProgressMaxValue(e) {
                 var pBar = document.getElementById('file-progress');
-
                 if (e.lengthComputable) {
                     pBar.max = e.total;
                 }
             }
-
             function updateFileProgress(e) {
                 var pBar = document.getElementById('file-progress');
 
@@ -492,10 +425,8 @@
                     pBar.value = e.loaded;
                 }
             }
-
             function uploadFile(file) {
-
-                var xhr = new XMLHttpRequest(),
+				var xhr = new XMLHttpRequest(),
                     fileInput = document.getElementById('class-roster-file'),
                     pBar = document.getElementById('file-progress'),
                     fileSizeLimit = 1024; // In MB
@@ -506,23 +437,39 @@
                         pBar.style.display = 'inline';
                         xhr.upload.addEventListener('loadstart', setProgressMaxValue, false);
                         xhr.upload.addEventListener('progress', updateFileProgress, false);
-
                         // File received / failed
                         xhr.onreadystatechange = function(e) {
                             if (xhr.readyState == 4) {
                                 // Everything is good!
-
                                 // progress.className = (xhr.status == 200 ? "success" : "failure");
                                 // document.location.reload(true);
                             }
                         };
-
                         // Start upload
                         xhr.open('POST', document.getElementById('file-upload-form').action, true);
                         xhr.setRequestHeader('X-File-Name', file.name);
                         xhr.setRequestHeader('X-File-Size', file.size);
                         xhr.setRequestHeader('Content-Type', 'multipart/form-data');
                         xhr.send(file);
+						var file_data = file;   
+						var form_data = new FormData();
+						form_data.append("fileData", file_data);
+						$.ajax({
+							url: BaseUrl+"/api/v0.1/update/profile/pic",
+							dataType: 'script',
+							cache: false,
+							contentType: false,
+							processData: false,
+							data: form_data,                         
+							type: 'post',
+							beforeSend: function(xhr) {
+								xhr.setRequestHeader('Authorization', 'Bearer ' + token);
+							},
+							success: function(){
+								alert("works"); 
+							}
+						});
+						
                     } else {
                         output('Please upload a smaller file (< ' + fileSizeLimit + ' MB).');
                     }

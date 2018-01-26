@@ -21,6 +21,7 @@ use Lsw\ApiCallerBundle\Call\HttpGetJson;
 use AppBundle\Service\Jwtauth;
 use AppBundle\Service\Common;
 use AppBundle\Entity\User;
+use AppBundle\Entity\UserDocuments;
 use FOS\RestBundle\View\View;
 
 
@@ -36,6 +37,9 @@ class ProfileApiController extends Controller
 		$checkToken = $Jwtauth->checkToken($request->headers->get('Authorization'), $this->getDoctrine()->getRepository('AppBundle:User'));
         $serializer = $common->getSerializer();
 		if($checkToken['verify'] == 1){
+			$baseurl = $request->getScheme() . '://' . $request->getHttpHost() . $request->getBasePath();
+			$photo= $checkToken['user']->getProfilePhotoPath();
+			$result['photoURL'] = $baseurl.$photo;
 			$result['data']     = $checkToken['user'];
             $result['status']   = "200";
 		}else{
@@ -125,6 +129,39 @@ class ProfileApiController extends Controller
 			}else{
 				$result['data']     = $baseurl.$dir.'avatar.png';
 			}
+			$result['status']   = "200";
+		}else{
+			$result['message'] = "user not found";
+            $result['status'] = "201";
+		}
+		$result['send_at'] = date(DATE_ISO8601, strtotime(date("m/d/Y H:i:s")));
+		$response = $serializer->serialize($result, 'json');
+        return new Response($response);
+    }
+	
+	/**
+     * @Rest\Post("/api/v0.1/upload/document")
+     */
+    public function userDocumentsUpload(Request $request){
+		$common     = $this->get(Common::class);
+		$Jwtauth    = $this->get(Jwtauth::class);
+		$serializer = $common->getSerializer();
+		$checkToken = $Jwtauth->checkToken($request->headers->get('Authorization'), $this->getDoctrine()->getRepository('AppBundle:User'));
+		if($checkToken['verify'] == 1){
+			$uploadedFile =  $request->files->get('fileData');
+			$dir 	= $this->get('kernel')->getRootDir() . '/../web/uploads/documents/';
+			$fileinfo = pathinfo($filename);
+			$name 	= uniqid() .'.'.$uploadedFile->getClientOriginalExtension();
+			$uploadedFile->move($dir, $name);
+			$em     = $this->getDoctrine()->getManager();
+			$userObj= $this->getDoctrine()->getRepository('AppBundle:User')->find($checkToken['user']->getId());
+			$data['fileData']    = $name;
+			$data['orgFileName'] = $uploadedFile->getClientOriginalName();
+			$data['fileName'] 	 = $name;
+			$data['fileType'] 	 = $uploadedFile->getClientMimeType();
+			$user = new UserDocuments();
+			$user->saveFileData($data, $userObj, $em, $this);
+			$result['message'] = "Document uploded successfully.";
 			$result['status']   = "200";
 		}else{
 			$result['message'] = "user not found";

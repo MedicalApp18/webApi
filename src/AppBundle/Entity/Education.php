@@ -252,13 +252,14 @@
     
     public function saveEducationData($requestData, $userObj, $degreeObj, $yearObj, $collegeObj, $em, $controllerObj){
         $this->setUser($userObj);
-		$this->setDegree($degreeObj);
-        $this->setCollege($collegeObj);
-		$this->setYear($yearObj);
+        $this->setDegree($degreeObj);    
+        $this->setCollege($collegeObj);    
+        $this->setYear($yearObj);    
         $this->setCreatedDate(new \DateTime("now"));
         $this->setUpdatedDate(new \DateTime("now"));
 		$em->persist($this);
 		$em->flush();
+        return $this->getId();
     }
     public function updateEducationData($eduObj, $degreeObj, $yearObj, $collegeObj, $em){
         if(count($degreeObj)> 0){

@@ -76,16 +76,17 @@ class WebController extends Controller
      */
     public function dashboardAction(){
 		$token 		= $this->get('session')->get('token');
-		$Jwtauth    = $this->get(Jwtauth::class);
-		$em     	= $this->getDoctrine()->getManager();
-		$checkToken = $Jwtauth->checkToken($token, $this->getDoctrine()->getRepository('AppBundle:User'));
-		if($checkToken['verify'] == 1){
-			$data['menu_select'] = 'home';
-			return $this->render('dashboard/dashboard.html.twig', $data);	
-		}else{
-			$uri  = $this->get('router')->generate('user_login');
-			return $this->redirect($uri);
+		if(!empty($token)){
+			$Jwtauth    = $this->get(Jwtauth::class);
+			$em     	= $this->getDoctrine()->getManager();
+			$checkToken = $Jwtauth->checkToken($token, $this->getDoctrine()->getRepository('AppBundle:User'));	
+			if($checkToken['verify'] == 1){
+				$data['menu_select'] = 'home';
+				return $this->render('dashboard/dashboard.html.twig', $data);	
+			}
 		}
+		$uri  = $this->get('router')->generate('user_login');
+		return $this->redirect($uri);
     }
 	/**
      * @Route("/user/logout", name="user_logout")

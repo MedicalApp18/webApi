@@ -41,7 +41,9 @@ class WebProfileController extends Controller
 			$profileData = $curl->curlGetData("api/v0.1/profile/details", $token);
 			$data['menu_select']  = 'home';
 			$data['profileData']  = $profileData['data'];
-			//print'<pre>';
+			$data['photoURL']  	  = $profileData['photoURL'];
+			print'<pre>';
+			print_r($data);die;
 			//print_r($this->get('session')->get('token'));die;
 			return $this->render('dashboard/profile.html.twig', $data);	
 		}else{
@@ -63,15 +65,29 @@ class WebProfileController extends Controller
 			$eduData = array();
 			$eduData['eduLists'] = $educationData['data'];
 			$fileContent = $this->render('dashboard/education.html.twig', $eduData);
-            $updateData = $fileContent->getContent();
-			$responseContent['data'] = $fileContent->getContent();
+            $responseContent['data'] = $fileContent->getContent();
 			$common     = $this->get(Common::class);
 			$serializer = $common->getSerializer();
 			$response = $serializer->serialize($responseContent, 'json');
 			return new Response($response);
-		}else{
-			$uri  = $this->get('router')->generate('user_login');
-			return $this->redirect($uri);
+		}
+    }
+	/**
+     * @Route("/add/row/education/{count}", name="add_education_row")
+     */
+    public function addEducationRowAction($count){
+		$token 		= $this->get('session')->get('token');
+		$Jwtauth    = $this->get(Jwtauth::class);
+		$em     	= $this->getDoctrine()->getManager();
+		$checkToken = $Jwtauth->checkToken($token, $this->getDoctrine()->getRepository('AppBundle:User'));
+        if($checkToken['verify'] == 1){
+			$data['count'] = $count;
+			$fileContent = $this->render('dashboard/add-education.html.twig', $data);
+            $responseContent['data'] = $fileContent->getContent();
+			$common     = $this->get(Common::class);
+			$serializer = $common->getSerializer();
+			$response = $serializer->serialize($responseContent, 'json');
+			return new Response($response);
 		}
     }
 }

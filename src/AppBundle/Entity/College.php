@@ -24,7 +24,13 @@
         * @ORM\Column(name="name", type="string", length=255, nullable=false)
         */
         private $name;
-
+        
+        /**
+        * @var string
+        *
+        * @ORM\Column(name="state", type="string", length=255, nullable=false)
+        */
+        private $state;
     
     /**
      * Get id
@@ -58,5 +64,29 @@
     public function getName()
     {
         return $this->name;
+    }
+
+    /**
+     * Set state
+     *
+     * @param string $state
+     *
+     * @return College
+     */
+    public function setState($state)
+    {
+        $this->state = $state;
+
+        return $this;
+    }
+
+    /**
+     * Get state
+     *
+     * @return string
+     */
+    public function getState()
+    {
+        return $this->state;
     }
 }

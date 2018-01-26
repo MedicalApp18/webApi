@@ -324,7 +324,16 @@
     {
         return $this->gender;
     }
+    public function getProfilePhotoPath()
+    {
+        return null === $this->profilePhoto
+           ? 'avatar.png'
+           : $this->getUploadDir().'/'.$this->profilePhoto;
+    }
     
+    protected function getUploadDir(){
+            return '/uploads/images';
+    }
     
     public function updateData($data, $userObj, $em, $controllerObj){
         if(isset($data['fullName'])){

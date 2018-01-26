@@ -148,7 +148,23 @@
         const width = dragbox.width();
         const boxesNb = Math.floor(width / 100);
         const marginSize = Math.floor((width - (boxesNb * 100)) / (boxesNb + 1));
-
+        var form_data = new FormData();
+        form_data.append("fileData", file);
+        $.ajax({
+          url: BaseUrl+"/api/v0.1/upload/document",
+          dataType: 'script',
+          cache: false,
+          contentType: false,
+          processData: false,
+          data: form_data,                         
+          type: 'post',
+          beforeSend: function(xhr) {
+            xhr.setRequestHeader('Authorization', 'Bearer ' + token);
+          },
+          success: function(){
+            alert("works"); 
+          }
+        });
         // Create the preview file container box.
         let container = $(`<div class='imageuploadify-container'>
           <button type='button' class='btn btn-danger glyphicon glyphicon-remove'><i class="fa fa-times"></i></button>

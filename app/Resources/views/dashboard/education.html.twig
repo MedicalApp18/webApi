@@ -8,11 +8,13 @@
 				<div id="fields" class="col-md-12 form-line">
 					{% if eduLists|length > 0 %}
 					<div class="form-group control-group after-add-more">
-						{% for eduList in eduLists %}
+						<input type="hidden" id="edu-count" name="edu-count" value="{{eduLists|length}}" />
+						{% for key, eduList in eduLists %}
 						<div class="row">
+							<input type="hidden" id="edu-id-{{ key }}" name="edu-id-{{ key }}" value="{{eduList.id}}" />
 							<div class="col-md-4">
 								<label for="exampleInputUsername">Qualitication</label>
-								<select class="form-control" field-name="degree_id" edu-id="{{eduList.id}}">
+								<select class="form-control chosen-select" tabindex="2" data-placeholder="Qualitication" field-name="degree_id" edu-count="{{ key }}" edu-id="{{eduList.id}}">
 									<option value=""></option>
 									{% for degree in app.session.get('degreeData') %}
 										{% if degree.id == eduList.degree['id'] %}
@@ -25,7 +27,7 @@
 							</div>
 							<div class="col-md-4">
 								<label for="InputUsername">College</label>
-								<select class="form-control" field-name="college_id" edu-id="{{eduList.id}}">
+								<select class="form-control chosen-select" tabindex="2" data-placeholder="College" field-name="college_id" edu-count="{{ key }}" edu-id="{{eduList.id}}">
 									<option value=""></option>
 									{% for college in app.session.get('collegeData') %}
 										{% if college.id == eduList.college['id'] %}
@@ -38,7 +40,7 @@
 							</div>
 							<div class="col-md-4">
 								<label for="InputUsername">Compleation year</label>
-								<select class="form-control" field-name="year_id" edu-id="{{eduList.id}}">
+								<select class="form-control chosen-select" tabindex="2" data-placeholder="Compleation year" field-name="year_id" edu-count="{{ key }}" edu-id="{{eduList.id}}">
 								<option value=""></option>
 									{% for eduYear in app.session.get('eduYearData') %}
 										{% if eduYear.id == eduList.year['id'] %}
@@ -53,8 +55,9 @@
 						{% endfor %}
 					</div>
 					{%else%}
-					<div class="form-group copy-fields pos-relative">
+					<div class="form-group copy-fields pos-relative after-add-more">
 						<div class="row">
+						<input type="hidden" id="edu-id-0" name="edu-id-0" value="" />
 							<div class="col-md-4">
 								<label for="exampleInputUsername">Qualitication</label>
 								<select class="form-control">
@@ -88,7 +91,7 @@
 					{%endif%}
 				</div>
 				<div class="col-md-12">
-					<a class="btn addqual-btn"><i class="fa fa-plus"></i> add qualification</a>
+					<a class="btn addqualification-btn"><i class="fa fa-plus"></i> add qualification</a>
 				</div>
 			</div>
 		</form>
@@ -136,6 +139,16 @@
 					
 				}, 1000);
 			});
+			$(".addqualification-btn").click(function(e) {
+				getNewEducationColumn(BaseUrl+'/app_dev.php/add/row/education', $("#edu-count").val());
+				e.preventDefault();
+			});
 		});
+		$(function() {
+            $('.chosen-select').chosen();
+            $('.chosen-select-deselect').chosen({
+                allow_single_deselect: true
+            });
+        });
 	</script>
 {% endblock %}

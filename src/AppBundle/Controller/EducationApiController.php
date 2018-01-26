@@ -59,14 +59,30 @@ class EducationApiController extends Controller
 		if($checkToken['verify'] == 1){
 			$requestParameters = $request->request->all();
 			$userObj  = $this->getDoctrine()->getRepository('AppBundle:User')->find($checkToken['user']->getId());
-			$degreeObj= $common->checkEntity('id',$requestParameters['degree_id'], $this->getDoctrine()->getRepository('AppBundle:Degree'));
-			$yearObj  = $common->checkEntity('id',$requestParameters['year_id'], $this->getDoctrine()->getRepository('AppBundle:Year'));
-			$collegeObj	= $common->checkEntity('id',$requestParameters['college_id'], $this->getDoctrine()->getRepository('AppBundle:College'));
+			$degreeObj 	= array();
+			$yearObj 	= array();
+			$collegeObj = array();
+			if(isset($requestParameters['degree_id'])){
+				$degreeObj= $common->checkEntity('id',$requestParameters['degree_id'], $this->getDoctrine()->getRepository('AppBundle:Degree'));	
+			}else{
+				$collegeObj	= $common->checkEntity('id','314', $this->getDoctrine()->getRepository('AppBundle:College'));
+			}
+			if(isset($requestParameters['year_id'])){
+				$yearObj  = $common->checkEntity('id',$requestParameters['year_id'], $this->getDoctrine()->getRepository('AppBundle:Year'));	
+			}else{
+				$yearObj  = $common->checkEntity('id','3', $this->getDoctrine()->getRepository('AppBundle:Year'));
+			}
+			if(isset($requestParameters['college_id'])){
+				$collegeObj	= $common->checkEntity('id',$requestParameters['college_id'], $this->getDoctrine()->getRepository('AppBundle:College'));	
+			}else{
+				$collegeObj	= $common->checkEntity('id','314', $this->getDoctrine()->getRepository('AppBundle:College'));
+			}
 			$em     = $this->getDoctrine()->getManager();
 			$education = new Education();
-			$education->saveEducationData($requestParameters, $userObj, $degreeObj, $yearObj, $collegeObj, $em, $this);
-			$result['data']     = 'Education added successfully';
-            $result['status']   = "200";
+			$id		   = $education->saveEducationData($requestParameters, $userObj, $degreeObj, $yearObj, $collegeObj, $em, $this);
+			$result['data']   = 'Education added successfully';
+			$result['id']     = $id;
+            $result['status'] = "200";
 		}else{
 			$result['message'] = "user not found";
             $result['status'] = "401";
