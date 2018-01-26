@@ -1,0 +1,53 @@
+<div class="row">
+	<input type="hidden" id="edu-id-{{count}}" name="edu-id-{{count}}" value="" />
+	<div class="col-md-4">
+		<label for="exampleInputUsername">Qualitication</label>
+		<select class="form-control chosen-select" tabindex="2" data-placeholder="Qualitication" field-name="degree_id" edu-count="{{ count }}" edu-id="">
+			<option value=""></option>
+			{% for degree in app.session.get('degreeData') %}
+				<option value="{{ degree.id }}">{{ degree.name|e }}</option>
+			{% endfor %}
+			</select>
+	</div>
+	<div class="col-md-4">
+		<label for="InputUsername">College</label>
+		<select class="form-control chosen-select" tabindex="2" data-placeholder="College" field-name="college_id" edu-count="{{ count }}" edu-id="">
+			<option value=""></option>
+			{% for college in app.session.get('collegeData') %}
+				<option value="{{ college.id }}">{{ college.name|e }}</option>
+			{% endfor %}
+			</select>
+	</div>
+	<div class="col-md-4">
+		<label for="InputUsername">Compleation year</label>
+		<select class="form-control chosen-select" tabindex="2" data-placeholder="Compleation year" edu-count="{{ count }}" field-name="year_id" edu-id="">
+		<option value=""></option>
+			{% for eduYear in app.session.get('eduYearData') %}
+				<option value="{{ eduYear.id }}">{{ eduYear.name|e }}</option>
+			{% endfor %}
+		</select>
+	</div>
+</div>
+{% block javascripts %}
+	<script type="text/javascript">
+		$(document).ready(function() {
+			$('#education-specialization select').on('change', function() {
+				var eduID = $("#edu-id-"+$(this).attr('edu-count')).val();
+				if(eduID == ''){
+					addToDB($(this).attr('field-name'), $(this).val(), BaseUrl+'/api/v0.1/add/education', token, $(this).attr('edu-count'));
+				}else{
+					saveToDB($(this).attr('field-name'), $(this).val(), $(this).attr('edu-id'), BaseUrl+'/api/v0.1/update/education', token);	
+				}
+				clearTimeout(timeoutId);
+				timeoutId = setTimeout(function() {
+				}, 1000);
+			});
+		});
+		$(function() {
+            $('.chosen-select').chosen();
+            $('.chosen-select-deselect').chosen({
+                allow_single_deselect: true
+            });
+        });
+	</script>
+{% endblock %}
