@@ -11,6 +11,7 @@
 						<input type="hidden" id="edu-count" name="edu-count" value="{{eduLists|length}}" />
 						{% for key, eduList in eduLists %}
 						<div class="row">
+                            <span class="rem-field"><i class="fa fa-times"></i></span>
 							<input type="hidden" id="edu-id-{{ key }}" name="edu-id-{{ key }}" value="{{eduList.id}}" />
 							<div class="col-md-4">
 								<label for="exampleInputUsername">Qualitication</label>
