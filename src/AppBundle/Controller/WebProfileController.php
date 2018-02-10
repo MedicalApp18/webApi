@@ -64,6 +64,7 @@ class WebProfileController extends Controller
 			$educationData = $curl->curlGetData("api/v0.1/education", $token);
 			$eduData = array();
 			$eduData['eduLists'] = $educationData['data'];
+			$eduData['specializationArray'] = $educationData['specializationArray'];
 			$fileContent = $this->render('dashboard/education.html.twig', $eduData);
             $responseContent['data'] = $fileContent->getContent();
 			$common     = $this->get(Common::class);

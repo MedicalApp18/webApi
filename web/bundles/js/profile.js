@@ -68,6 +68,27 @@ function addToDB(fieldName, filedValue, baseUrl, token, count){
 	});
 }
 
+function addToDBDirect(fieldName, filedValue, baseUrl, token){
+	$(".success-msg1").removeClass('hide');
+	var submitData = fieldName+'='+filedValue;
+    $.ajax({
+		url: baseUrl,
+		type: "POST",
+		async: true,
+		//data: {fieldName: filedValue,},
+		data: submitData,
+		beforeSend: function(xhr) {
+    		xhr.setRequestHeader('Authorization', 'Bearer ' + token);
+			$('.form-status-holder').html('Saving...');
+		},
+		success: function(data) {
+			setTimeout(function(){
+				$(".success-msg1").addClass('hide');
+			}, 2000);
+		},
+	});
+}
+
 function getNewEducationColumn(baseUrl, count){
 	//console.log('Saving to the db');
 	var cnt;

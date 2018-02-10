@@ -170,4 +170,28 @@ class Common{
 		$entityObj = $entityRepository->findAll(array($column => $id));
 		return $entityObj;
     }
+	
+	function getUserEducation($userId, $em){
+		$sql ="SELECT GROUP_CONCAT(' ', d.name ) as totalEdu FROM  `degree` d, educations e WHERE e.degree_id = d.id AND e.user_id ='".$userId."' GROUP BY e.user_id ORDER BY e.created_date";
+		$stmt = $em->getConnection()->prepare($sql);
+		$stmt->execute();
+		$data = $stmt->fetch();
+		$return = '';
+		if(count($data)>0 && is_array($data)){
+			$return = $data['totalEdu'];
+		}
+		return $return;
+    }
+	
+	function getUserSpecialization($userId, $em){
+		$sql ="SELECT GROUP_CONCAT('', s.id ) as totalSpecialization FROM  `specialization` s, user_specialization `us` WHERE `us`.specialization_id = s.id AND `us`.user_id ='".$userId."' GROUP BY `us`.user_id";
+		$stmt = $em->getConnection()->prepare($sql);
+		$stmt->execute();
+		$data = $stmt->fetch();
+		$return = '';
+		if(count($data)>0 && is_array($data)){
+			$return = $data['totalSpecialization'];
+		}
+		return $return;
+    }
 }

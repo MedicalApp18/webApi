@@ -40,11 +40,14 @@ class ProfileApiController extends Controller
 			$baseurl = $request->getScheme() . '://' . $request->getHttpHost() . $request->getBasePath();
 			$photo= $checkToken['user']->getProfilePhotoPath();
 			$result['photoURL'] = $baseurl.'/'.$photo;
+			$userData 	 		= $checkToken['user'];
+			$userEduData 		= $common->getUserEducation($checkToken['user']->getId(), $em);
+			$result['userEdu'] 	= $userEduData;
 			$result['data']     = $checkToken['user'];
-            $result['status']   = "200";
+			$result['status']   = "200";
 		}else{
-			$result['message'] = "user not found";
-            $result['status'] = "201";
+			$result['message'] 	= "user not found";
+            $result['status'] 	= "201";
 		}
 		$result['send_at'] = date(DATE_ISO8601, strtotime(date("m/d/Y H:i:s")));
 		$response = $serializer->serialize($result, 'json');

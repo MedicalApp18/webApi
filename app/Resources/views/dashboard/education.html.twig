@@ -1,3 +1,6 @@
+{% block stylesheets %}
+	<link rel="stylesheet" href="{{asset('bundles/css/fastselect.min.css') }}">
+{% endblock %}
 <section id="education-specialization">
 	<div class="section-content">
 		<h1 class="section-header">Education *</h1>
@@ -99,7 +102,7 @@
 	</div>
 </section>
 <hr/>
-<section>
+<section id="specialization">
 	<div class="row">
 		<div class="col-md-12">
 			<div id="contact-detail">
@@ -112,15 +115,18 @@
 				<div class="form-group mrgn_top">
 					<div class="specialization_selected">
 						<h5>2 specialization selected</h5>
-						<div class="tags">
-							<a href="#">Functional Ortho&nbsp;&nbsp;<span><i class="fa fa-times"></i></span></a><a href="#">Cardiologist&nbsp;&nbsp;<span><i class="fa fa-times"></i></span></a>
-						</div>
 					</div>
 					<div class="add_specialization">
 						<small>Add Specialization</small>
-						<form class="form-horizontal" role="form">
-							<input type="text" class="form-control" />
-						</form>
+						<select  class="form-control multipleSelect" multiple name="language">
+							{% for specialization in app.session.get('specializationData') %}
+								{% if specialization.id in specializationArray %}
+									<option selected value="{{specialization.id}}">{{specialization.name}}</option>
+								{% else %}
+									<option value="{{specialization.id}}">{{specialization.name}}</option>
+								{% endif %}
+							{% endfor %}
+						</select>
 					</div>
 				</div>
 			</div>
@@ -128,8 +134,10 @@
 	</div>
 </section>
 {% block javascripts %}
+	<script type="text/javascript" src="{{ asset('bundles/js/fastselect.standalone.js') }}"></script>
 	<script type="text/javascript">
 		$(document).ready(function() {
+			$('.multipleSelect').fastselect();
 			$('#education-specialization select').on('change', function() {
 				//console.log('Textarea Change');
 				var eduID = $("#edu-id-"+$(this).attr('edu-count')).val();
@@ -143,6 +151,14 @@
 					// Runs 1 second (1000 ms) after the last change
 					//fieldName, filedValue, id, baseUrl, token
 					
+				}, 1000);
+			});
+			$('#specialization select').on('change', function() {
+				//var options = $('.multipleSelect option:selected');
+				var allOptions = $(".multipleSelect option:selected").map(function(){ return this.value }).get();
+				console.log(allOptions);
+				timeoutId = setTimeout(function() {
+					addToDBDirect('selected_specialization', allOptions, BaseUrl+'/api/v0.1/add/specialization', token, '');
 				}, 1000);
 			});
 			$(".addqualification-btn").click(function(e) {

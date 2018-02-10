@@ -22,6 +22,7 @@
     use Symfony\Component\Serializer\Normalizer\ObjectNormalizer;
     use Lsw\ApiCallerBundle\Call\HttpGetJson;
     use Doctrine\Common\Collections\ArrayCollection;
+    use Doctrine\ORM\EntityRepository;
     use \DateTime;
     /**
     * @ORM\Entity
@@ -34,8 +35,13 @@
         * @ORM\Column(type="integer")
         * @ORM\GeneratedValue(strategy="AUTO")
         */
-       protected $id;
+        protected $id;
        
+        /**
+        * @ORM\Column(type="string", columnDefinition="enum('', 'Mr.', 'Mrs.', 'Dr.', 'Prof.')")
+        */
+        protected $title = '';
+        
         /**
         * @ORM\Column(type="string", length=200, nullable=true)
         */
@@ -101,6 +107,12 @@
         private $clinics;
         
         /**
+        * @ORM\OneToMany(targetEntity="AppBundle\Entity\Education", mappedBy="user")
+        * @var Education[]
+        */
+        private $educations;
+        
+        /**
         * @ORM\Column(type="string", length=100, nullable=true)
         */
         protected $totalExp='';
@@ -119,6 +131,7 @@
         {
             parent::__construct();
             $this->clinics = new ArrayCollection();
+            $this->educations = new ArrayCollection();
             // your own logic
         }
         /**
@@ -363,6 +376,9 @@
         if(isset($data['totalExp'])){
             $userObj->setTotalExp($data['totalExp']);
         }
+        if(isset($data['title'])){
+            $userObj->setTitle($data['title']);
+        }
         if(isset($data['fileData'])){
             $userObj->setProfilePhoto($data['fileData']);
         }
@@ -412,6 +428,26 @@
     public function getClinics()
     {
         return $this->clinics;
+    }
+    
+    /**
+     * Remove education
+     *
+     * @param \AppBundle\Entity\Education $education
+     */
+    public function removeEducation(\AppBundle\Entity\Clinic $education)
+    {
+        $this->clinics->removeElement($education);
+    }
+
+    /**
+     * Get educations
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getEducations()
+    {
+        return $this->educations;
     }
 
     /**
@@ -532,5 +568,29 @@
     public function getStateId()
     {
         return $this->state_id;
+    }
+
+    /**
+     * Set title
+     *
+     * @param string $title
+     *
+     * @return User
+     */
+    public function setTitle($title)
+    {
+        $this->title = $title;
+
+        return $this;
+    }
+
+    /**
+     * Get title
+     *
+     * @return string
+     */
+    public function getTitle()
+    {
+        return $this->title;
     }
 }

@@ -21,9 +21,9 @@
                         <div class="user-bg"> <img width="100%" alt="user" src="{{asset('bundles/images/medical_translation.png')}}">
                             <div class="overlay-box">
                                 <div class="user-content">
-                                    <a href="javascript:void(0)"><img src="{{asset('bundles/images/user-img2.jpg')}}" class="thumb-lg img-circle" alt="img"></a>
-                                    <h4 class="text-white">Dr. {{ app.session.get('login_user_name') }}</h4>
-                                    <h5 class="text-white">MBBS, M.D Cardiologist</h5>
+                                    <a href="javascript:void(0)"><img src="{{userInfo.photoURL}}" class="thumb-lg img-circle" alt="img"></a>
+									<h4 class="text-white">{{userInfo.data.title}} {{ app.session.get('login_user_name') }}</h4>
+                                    <h5 class="text-white">{{userInfo.userEdu}}</h5>
                                     <span class="live_green">live</span>
                                     <a href="{{ path('user_profile') }}"><span class="edit-picture"><i class="fa fa-pencil" aria-hidden="true"></i></span></a>
                                 </div>
@@ -36,7 +36,6 @@
                             </div>
                         </div>
                     </div>
-
                     <div class="profile-strength">
                         <h1>profile strength: <strong>Intermediate</strong></h1>
                         <p style="width:99%; margin:5px 0 0;" data-value="99">&nbsp;</p>
@@ -52,34 +51,32 @@
                         <ul>
                             <li>
                                 <span class="check-sign">
-													<a href="index.html#"><i class="fa fa-check"></i>&nbsp;</a>
-												</span>
+									<a href="#"><i class="fa fa-check"></i>&nbsp;</a>
+								</span>
                                 <span class="desc">add skills</span>
-
-                                <a class="add-profil" href="index.html#"><i class="fa fa-plus"></i></a>
+                                <a class="add-profil" href="#"><i class="fa fa-plus"></i></a>
                             </li>
                             <li>
                                 <span class="check-sign">
-													<a href="index.html#"><i class="fa fa-check"></i>&nbsp;</a>
-												</span>
+									<a href="#"><i class="fa fa-check"></i>&nbsp;</a>
+								</span>
                                 <span class="desc">add education</span>
-                                <a class="add-profil" href="index.html#"><i class="fa fa-plus"></i></a>
+                                <a class="add-profil" href="#"><i class="fa fa-plus"></i></a>
                             </li>
                             <li>
                                 <span class="check-sign">
-													<a href="index.html#"><i class="fa fa-check"></i>&nbsp;</a>
-												</span>
+									<a href="#"><i class="fa fa-check"></i>&nbsp;</a>
+								</span>
                                 <span class="desc">add clinic</span>
-
-                                <a class="add-profil" href="index.html#"><i class="fa fa-plus"></i></a>
+                                <a class="add-profil" href="#"><i class="fa fa-plus"></i></a>
                             </li>
                         </ul>
                     </div>
                     <div class="smallstat box">
                         <h2>Rakesh Skin Care</h2>
-                        <div class="warnings-msg"><i class="fa fa-exclamation-triangle" aria-hidden="true"></i>&nbsp;2 unvarified doctors</div>
-                        <!--						<span class="title">Thakur Dental Clinic</span>-->
-                        <!--                        <div class="progress-bar progress-bar-white" style="margin-top:10px; margin-bottom:10px; clear:both;" role="progressbar" data-transitiongoal="86" aria-valuenow="86" style="width: 86%;">86%</div>-->
+                        <div class="warnings-msg">
+							<i class="fa fa-exclamation-triangle" aria-hidden="true"></i>&nbsp;2 unvarified doctors
+						</div>
                         <p style="width:80%; margin:5px 0 0;" data-value="80">&nbsp;</p>
                         <progress max="100" value="80" class="html5">
                             <div class="progress-bar">
@@ -88,12 +85,9 @@
                         </progress>
                         <button class="btn complete-profile-btn">complete now</button>
                     </div>
-
                     <div class="smallstat box">
                         <h2>thakur dental clinic</h2>
                         <div class="warnings-msg"><i class="fa fa-exclamation-triangle" aria-hidden="true"></i>&nbsp;2 unvarified doctors</div>
-                        <!--						<span class="title">Thakur Dental Clinic</span>-->
-
                         <p style="width:20%; margin:5px 0 0;" data-value="20">&nbsp;</p>
                         <progress max="100" value="20" class="html5">
                             <div class="progress-bar">
@@ -102,12 +96,9 @@
                         </progress>
                         <button class="btn complete-profile-btn">complete now</button>
                     </div>
-
                     <div class="smallstat box">
                         <h2>Anand Polyclinic</h2>
                         <div class="warnings-msg"><i class="fa fa-exclamation-triangle" aria-hidden="true"></i>&nbsp;2 unvarified doctors</div>
-                        <!--						<span class="title">Thakur Dental Clinic</span>-->
-
                         <p style="width:70%; margin:5px 0 0;" data-value="70">&nbsp;</p>
                         <progress max="100" value="70" class="html5">
                             <div class="progress-bar">

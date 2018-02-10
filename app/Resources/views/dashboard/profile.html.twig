@@ -51,8 +51,11 @@
 											<div class="row">
 												<div class="col-md-3">
 													<label for="exampleInputUsername">Title</label>
-													<select data-placeholder="Title" class="form-control chosen-select" tabindex="2">
-														<option>Mr</option><option>Mrs</option>
+													<select data-placeholder="Title" field-name="title" class="form-control chosen-select" tabindex="2">
+														<option value="Mr." {% if profileData.title == 'Mr.' %} selected="selected" {% endif %}>Mr.</option>
+														<option value="Mrs." {% if profileData.title == 'Mrs.' %} selected="selected" {% endif %}>Mrs</option>
+														<option value="Dr." {% if profileData.title == 'Dr.' %} selected="selected" {% endif %}>Dr.</option>
+														<option value="Prof." {% if profileData.title == 'Prof.' %} selected="selected" {% endif %}>Prof.</option>
 													</select>
 												</div>
 												<div class="col-md-9">
@@ -245,7 +248,7 @@
                     <div class="bhoechie-tab-content">
                         <center>
                             <h1 class="glyphicon glyphicon-credit-card" style="font-size:12em;color:#55518a"></h1>
-                            <h2 style="margin-top: 0;color:#55518a">Cooming Soon</h2>
+                            <h2 style="margin-top: 0;color:#55518a">Coming Soon</h2>
                             <h3 style="margin-top: 0;color:#55518a">Credit Card</h3>
                         </center>
                     </div>
@@ -273,6 +276,7 @@
 	 <script type="text/javascript">
 		var BaseUrl = '{{ app.request.getSchemeAndHttpHost() }}';
 		var token  = '{{ app.session.get('token') }}';
+		var profilePicUrl = '{{photoURL}}';
 	 </script>
 	<script type="text/javascript" src="{{ asset('bundles/js/imageuploadify.js') }}"></script>
 	<script type="text/javascript" src="{{ asset('bundles/js/profile.js') }}"></script>
@@ -372,6 +376,12 @@
                     fileDrag.addEventListener('dragleave', fileDragHover, false);
                     fileDrag.addEventListener('drop', fileSelectHandler, false);
                 }
+				document.getElementById('start').classList.add("hidden");
+				document.getElementById('response').classList.remove("hidden");
+				document.getElementById('notimage').classList.add("hidden");
+				// Thumbnail Preview
+				document.getElementById('file-image').classList.remove("hidden");
+				document.getElementById('file-image').src = profilePicUrl;
             }
             function fileDragHover(e) {
 				var fileDrag = document.getElementById('file-drag');
@@ -397,7 +407,7 @@
                 m.innerHTML = msg;
             }
             function parseFile(file) {
-				console.log(file.name);
+				//console.log(file.name);
                 output(
                     '<strong>' + encodeURI(file.name) + '</strong>'
                 );

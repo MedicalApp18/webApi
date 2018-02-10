@@ -70,6 +70,7 @@ class WebController extends Controller
 		$this->get('session')->set('stateData', $stateData['data']);
 		$this->get('session')->set('token', $token);
 		$this->get('session')->set('login_user_name', $checkToken['user']->getFullName());
+		//$this->get('session')->set('profilePicUrl', $profileData['photoURL']);
         $uri    = $this->get('router')->generate('dashboard');
         return $this->redirect($uri);
     }
@@ -84,6 +85,11 @@ class WebController extends Controller
 			$checkToken = $Jwtauth->checkToken($token, $this->getDoctrine()->getRepository('AppBundle:User'));	
 			if($checkToken['verify'] == 1){
 				$data['menu_select'] = 'home';
+				$curl   = $this->get(Curl::class);
+				$profileData = $curl->curlGetData("api/v0.1/profile/details", $token);
+				$data['userInfo'] = $profileData;
+				$this->get('session')->set('login_user_name', $checkToken['user']->getFullName());
+				$this->get('session')->set('profilePicUrl', $profileData['photoURL']);
 				return $this->render('dashboard/dashboard.html.twig', $data);	
 			}
 		}
