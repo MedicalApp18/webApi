@@ -217,6 +217,20 @@ h2.resp-accordion {
 }
 
 
+.rem-field{position: absolute;
+    right: -4px;
+    top: 30px;
+    font-size: 10px;
+    background: red;
+    width: 17px;
+    height: 17px;
+    border-radius: 50%;
+    line-height: 17px;
+    color: #fff;
+    text-align: center;}
+
+
+
 @media(max-width:768px){
 .main{width: 65%;}
 
