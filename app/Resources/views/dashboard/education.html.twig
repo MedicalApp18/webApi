@@ -13,8 +13,8 @@
 					<div class="form-group control-group after-add-more">
 						<input type="hidden" id="edu-count" name="edu-count" value="{{eduLists|length}}" />
 						{% for key, eduList in eduLists %}
-						<div class="row">
-                            <span class="rem-field"><i class="fa fa-times"></i></span>
+						<div class="row" id="edu-list-{{eduList.id}}">
+                            <span class="rem-field" edu-id="{{eduList.id}}"><i class="fa fa-times"></i></span>
 							<input type="hidden" id="edu-id-{{ key }}" name="edu-id-{{ key }}" value="{{eduList.id}}" />
 							<div class="col-md-4">
 								<label for="exampleInputUsername">Qualitication</label>
@@ -159,11 +159,17 @@
 				var allOptions = $(".multipleSelect option:selected").map(function(){ return this.value }).get();
 				console.log(allOptions);
 				timeoutId = setTimeout(function() {
-					addToDBDirect('selected_specialization', allOptions, BaseUrl+'/api/v0.1/add/specialization', token, '');
+					addToDBDirect('selected_specialization', allOptions, BaseUrl+'/api/v0.1/add/specialization', token);
 				}, 1000);
 			});
 			$(".addqualification-btn").click(function(e) {
 				getNewEducationColumn(BaseUrl+'/add/row/education', $("#edu-count").val());
+				e.preventDefault();
+			});
+			$(".rem-field").click(function(e) {
+				var eduID = $(this).attr('edu-id');
+				addToDBDirect('id', eduID, BaseUrl+'/api/v0.1/remove/education', token);
+				$("#edu-list-"+eduID).hide();
 				e.preventDefault();
 			});
 		});

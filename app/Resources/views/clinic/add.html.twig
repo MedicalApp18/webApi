@@ -1,0 +1,496 @@
+{% extends 'dashboard/base.html.twig' %}
+{% block title %}{{ app.session.get('login_user_name') }} - Dashboard{% endblock %}
+{% block stylesheets %}
+	{{ parent() }}
+	<link rel="stylesheet" href="{{asset('bundles/css/add-clinic.css') }}">
+	<link rel="stylesheet" href="{{asset('bundles/css/bootstrap-chosen.css') }}">
+{% endblock %}
+{% block body %}
+	{{ parent() }}
+	<div class="ovrlay34">
+        <div id="dialog" class="centered">
+            <div id="titlebar">
+                <h2>Please select clinic type</h2>
+            </div>
+            <div class="chose_clinic">
+                <ul class="row">
+                    <li class="col-lg-12">
+                        <input type="radio" class="clinic-chkbx" id="f-option" name="selector">
+                        <label for="f-option">I own the clinic</label>
+
+                        <div class="check"></div>
+                    </li>
+                    <li class="col-lg-12">
+                        <input type="radio" class="clinic-chkbx" id="s-option" name="selector">
+                        <label for="s-option">I am a visiting consultant in the Clinic</label>
+
+                        <div class="check">
+                            <div class="inside"></div>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+            <button class="actionbtn2 cancel_btn">Cancel</button>
+            <button class="actionbtn2 next_disabled">Next</button>
+        </div>
+    </div>
+	<section id="add-clinic" class="main-content">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 col-lg-offset-2">
+                    <div class="wizard">
+                        <h4><strong>Add your Clinic</strong></h4>
+                        <div class="wizard-inner">
+                            <div class="active-line"></div>
+                            <ul class="nav nav-tabs" role="tablist">
+                                <li role="presentation" class="active stepactive1">
+                                    <div class="connecting-line border-right"></div>
+                                    <a href="#clinicdet" data-toggle="tab" aria-controls="step1" role="tab" title="Clinic Details">
+                                        <span class="round-tab">1</span>
+                                        <p>Clinic Details</p>
+                                    </a>
+                                </li>
+                                <li role="presentation" class="disabled stepactive2">
+                                    <div class="connecting-line border-right border-left"></div>
+                                    <a href="#clinicproof" data-toggle="tab" aria-controls="step2" role="tab" title="Clinic Proof">
+                                        <span class="round-tab">2</span>
+                                        <p>Clinic Proof</p>
+                                    </a>
+                                </li>
+                                <li role="presentation" class="disabled stepactive3">
+                                    <div class="connecting-line border-right border-left"></div>
+                                    <a href="#maplocation" data-toggle="tab" aria-controls="step3" role="tab" title="Map Location">
+                                        <span class="round-tab">3</span>
+                                        <p>Map Location</p>
+                                    </a>
+                                </li>
+                                <li role="presentation" class="disabled stepactive4">
+                                    <div class="connecting-line"></div>
+                                    <a href="#clinictimings" data-toggle="tab" aria-controls="complete" role="tab" title="Clinic Timings">
+                                        <span class="round-tab">4</span>
+                                        <p>Clinic Timings</p>
+                                    </a>
+                                </li>
+                                <li role="presentation" class="disabled stepactive5">
+                                    <div class="connecting-line"></div>
+                                    <a href="#consultantdet" data-toggle="tab" aria-controls="complete" role="tab" title="Consultant Detail">
+                                        <span class="round-tab">5</span>
+                                        <p>Consulant Detail</p>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                        <form action=" " method="post" id="add_clinic_form">
+                            <fieldset>
+                                <div class="tab-content">
+                                    <div class="tab-pane active" role="tabpanel" id="clinicdet">
+                                        <fieldset>
+                                            <h4 class="process-title1">Clinic Basic Details</h4>
+                                            <div class="form-group">
+                                                <label for="clinic_name" class="control-label">Clinic Name</label>
+                                                <input type="text" id="clinic_name" name="clinic_name" placeholder="First name..." class="form-control" required />
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="exampleInputUsername">City</label>
+                                                <select data-placeholder="Chose City" class="form-control chosen-select" tabindex="1" class="form-control chosen-select" required>
+                                          <option value="Andhra Pradesh">Andhra Pradesh</option><option value="Arunachal Pradesh">Arunachal Pradesh</option><option value="Assam">Assam</option><option value="Bihar">Bihar</option><option value="Chhattisgarh">Chhattisgarh</option><option value="Dadra and Nagar Haveli">Dadra and Nagar Haveli</option><option value="Daman and Diu">Daman and Diu</option><option value="Delhi">Delhi</option><option value="Goa">Goa</option><option value="Gujarat">Gujarat</option><option value="Haryana">Haryana</option><option value="Himachal Pradesh">Himachal Pradesh</option><option value="Jammu and Kashmir">Jammu and Kashmir</option><option value="Jharkhand">Jharkhand</option><option value="Karnataka">Karnataka</option><option value="Kerala">Kerala</option><option value="Madhya Pradesh">Madhya Pradesh</option><option value="Maharashtra">Maharashtra</option><option value="Manipur">Manipur</option><option value="Meghalaya">Meghalaya</option><option value="Mizoram">Mizoram</option><option value="Nagaland">Nagaland</option><option value="Orissa">Orissa</option><option value="Puducherry">Puducherry</option><option value="Punjab">Punjab</option><option value="Rajasthan">Rajasthan</option><option value="Sikkim">Sikkim</option><option value="Tamil Nadu">Tamil Nadu</option><option value="Telangana">Telangana</option><option value="Tripura">Tripura</option><option value="Uttar Pradesh">Uttar Pradesh</option><option value="Uttarakhand">Uttarakhand</option><option value="West Bengal">West Bengal</option>
+                                        </select>
+                                            </div>
+
+                                            <div class="form-group">
+                                                <label for="clinic_locality">Locality</label>
+                                                <select data-placeholder="Chose City" class="form-control chosen-select" tabindex="1" class="form-control chosen-select" required>
+                                        <option value="Andhra Pradesh">Andhra Pradesh</option><option value="Arunachal Pradesh">Arunachal Pradesh</option><option value="Assam">Assam</option><option value="Bihar">Bihar</option><option value="Chhattisgarh">Chhattisgarh</option><option value="Dadra and Nagar Haveli">Dadra and Nagar Haveli</option><option value="Daman and Diu">Daman and Diu</option><option value="Delhi">Delhi</option><option value="Goa">Goa</option><option value="Gujarat">Gujarat</option><option value="Haryana">Haryana</option><option value="Himachal Pradesh">Himachal Pradesh</option><option value="Jammu and Kashmir">Jammu and Kashmir</option><option value="Jharkhand">Jharkhand</option><option value="Karnataka">Karnataka</option><option value="Kerala">Kerala</option><option value="Madhya Pradesh">Madhya Pradesh</option><option value="Maharashtra">Maharashtra</option><option value="Manipur">Manipur</option><option value="Meghalaya">Meghalaya</option><option value="Mizoram">Mizoram</option><option value="Nagaland">Nagaland</option><option value="Orissa">Orissa</option><option value="Puducherry">Puducherry</option><option value="Punjab">Punjab</option><option value="Rajasthan">Rajasthan</option><option value="Sikkim">Sikkim</option><option value="Tamil Nadu">Tamil Nadu</option><option value="Telangana">Telangana</option><option value="Tripura">Tripura</option><option value="Uttar Pradesh">Uttar Pradesh</option><option value="Uttarakhand">Uttarakhand</option><option value="West Bengal">West Bengal</option>
+                                                </select>
+                                            </div>
+                                            <ul>
+                                                <li class="text-right"><button type="submit" class="btn next-step">Save and Next  <i class="fa fa-chevron-right"></i></button></li>
+                                            </ul>
+                                        </fieldset>
+                                    </div>
+                                    <div class="tab-pane" role="tabpanel" id="clinicproof">
+                                        <fieldset>
+                                            <h4 class="process-title1">Clinic Proof</h4>
+                                            <div class="form-group">
+                                                <label>Upload Document</label>
+                                                <input type="file" placeholder="First name..." class="form-control">
+                                            </div>
+                                            <div class="form-group note-7">
+                                                <small>Please provide your clinic ownership proof to verify your profile, so that no one else can get access to your information.</small>
+                                                <p>Acceptable documents</p>
+                                                <ul>
+                                                    <li><i class="fa fa-check"></i>&nbsp;Prescription pada</li>
+                                                    <li><i class="fa fa-check"></i>&nbsp; Tax Receipt</li>
+                                                </ul>
+                                            </div>
+                                        </fieldset>
+                                        <ul>
+                                            <li class="text-left pull-left"><button type="button" class="btn prev-step"><i class="fa fa-chevron-left"></i>  Previous</button></li>
+                                            <li class="text-right pull-right"><button type="submit" class="btn next-step">Save and Next  <i class="fa fa-chevron-right"></i></button></li>
+                                        </ul>
+                                    </div>
+                                    <div class="tab-pane" role="tabpanel" id="maplocation">
+                                        <fieldset>
+                                            <h4 class="process-title1">Map Location</h4>
+                                            <div class="form-group">
+                                                <label>Phone Number</label>
+                                                <div class="row">
+                                                    <div class="col-lg-4 col-xs-8 pdng_2">
+                                                        <input type="phone" placeholder="Phone Number..." class="form-control">
+                                                        <span class="verfd"><i class="fa fa-check"></i>&nbsp;verified</span>
+                                                    </div>
+                                                    <div class="col-lg-2 col-xs-4 pdng_0"> <a class="btn edit-btn2" href="#">Edit</a></div>
+                                                </div>
+                                                <small>Note: patient calls will be directed to this number. you can update it later also</small>
+                                            </div>
+                                            <hr class="map-location-hrline" />
+                                            <div class="form-group">
+                                                <label>Street Address</label>
+                                                <input type="text" placeholder="" class="form-control" />
+                                            </div>
+                                        </fieldset>
+                                        <div class="map_loc">
+                                            <small>Drag and drop the pin to your location</small>
+                                            <h4>use current location</h4>
+                                            <div class="map-loc1">
+                                                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3499.6077280205877!2d77.26044379999999!3d28.701378699999996!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x390cfc3e87ce436f%3A0x5b52d9cfe9f67f3a!2sDr.+Satish+Vashistha+Clinic!5e0!3m2!1sen!2sin!4v1518240780027" width="100%" height="250" frameborder="0" style="border:0" allowfullscreen></iframe>
+                                            </div>
+                                        </div>
+                                        <ul>
+                                            <li class="text-left pull-left"><button type="button" class="btn prev-step"><i class="fa fa-chevron-left"></i>  Previous</button></li>
+                                            <li class="text-right pull-right"><button type="submit" class="btn next-step">Save and Next  <i class="fa fa-chevron-right"></i></button></li>
+                                        </ul>
+                                    </div>
+
+                                    <div class="tab-pane" role="tabpanel" id="clinictimings">
+                                        <fieldset>
+                                            <h4 class="process-title1">Clinic Timings</h4>
+                                            <div class="form-group">
+
+                                                <div id="schedule-weekdays">
+                                                    <ul>
+                                                        <li>
+                                                            <span class="add-schedule-window">add&nbsp;<i class="fa fa-plus"></i></span>
+                                                            <span class="remove-schedule-window">remove&nbsp;<i class="fa fa-times"></i></span>
+                                                            <div class="weekdays-scheduled">
+                                                                <h5 class="sch-title">Days:</h5>
+                                                                <label class="weekdays-sch">
+                                                            <input type="checkbox" name="sun" value="" />
+                                                            <span class="days-name">SUN</span>
+                                                            </label>
+                                                                <label class="weekdays-sch">
+                                                            <input type="checkbox" name="mon" value="" />
+                                                            <span class="days-name">MON</span>
+                                                            </label>
+                                                                <label class="weekdays-sch">
+                                                            <input type="checkbox" name="tue" value="" />
+                                                            <span class="days-name">TUE</span>
+                                                            </label>
+                                                                <label class="weekdays-sch">
+                                                            <input type="checkbox" name="wed" value="" />
+                                                            <span class="days-name">WED</span>
+                                                            </label>
+                                                                <label class="weekdays-sch">
+                                                            <input type="checkbox" name="thu" value="" />
+                                                            <span class="days-name">THU</span>
+                                                            </label>
+                                                                <label class="weekdays-sch">
+                                                            <input type="checkbox" name="fri" value="" />
+                                                            <span class="days-name">FRI</span>
+                                                            </label>
+                                                                <label class="weekdays-sch">
+                                                            <input type="checkbox" name="sat" value="" />
+                                                            <span class="days-name">SAT</span>
+                                                            </label>
+                                                            </div>
+                                                            <div class="timeshceeule">
+                                                                <div class="timetags">
+                                                                    <h5 class="sch-title">Time Shift:</h5>
+                                                                    <a><span class="plussymbol1"><i class="fa fa-plus"></i></span></a>
+                                                                    <a class="times-tag-pan">
+                                                                        <div class="input-group registration-date-time ">
+                                                                            <div class="timedropwrap">
+                                                                                <select type="text" class="time-drop form-control" id="ship_date" name="ship_date">
+                                                                <option value="7">7 AM.</option>
+                                                                <option value="8">8 AM</option>
+                                                                <option value="9">9 AM</option>
+                                                                <option value="10" selected >10 AM</option>
+                                                                <option value="11">11 AM</option>
+                                                                <option value="12">12 PM</option>
+                                                                <option value="13">1 PM</option>
+                                                                <option value="14">2 PM</option>
+                                                                <option value="15">3 PM</option>
+                                                                <option value="16">4 PM</option>
+                                                                <option value="17">5 PM</option>
+                                                                <option value="18">6 PM</option>
+                                                                <option value="19">7 PM</option>
+                                                            </select>
+                                                                            </div>
+                                                                            <span class="input-group-addon rang-symbol"><i class="fa fa-minus" aria-hidden="true"></i></span>
+                                                                            <div class="timedropwrap">
+                                                                                <select type="text" class="time-drop form-control" id="shiptime" name="ship_time">
+                                                            <option value="7">7 AM.</option>
+                                                            <option value="8">8 AM</option>
+                                                            <option value="9">9 AM</option>
+                                                            <option value="10" selected >10 AM</option>
+                                                            <option value="11">11 AM</option>
+                                                            <option value="12">12 PM</option>
+                                                            <option value="13">1 PM</option>
+                                                            <option value="14">2 PM</option>
+                                                            <option value="15">3 PM</option>
+                                                            <option value="16">4 PM</option>
+                                                            <option value="17">5 PM</option>
+                                                            <option value="18">6 PM</option>
+                                                            <option value="19">7 PM</option>
+                                                            </select>
+                                                                            </div>
+                                                                        </div>
+                                                                    </a>
+                                                                </div>
+                                                            </div>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </fieldset>
+                                        <ul>
+                                            <li class="text-left pull-left"><button type="button" class="btn prev-step"><i class="fa fa-chevron-left"></i>  Previous</button></li>
+                                            <li class="text-right pull-right"><button type="submit" class="btn next-step">Save and Next  <i class="fa fa-chevron-right"></i></button></li>
+                                        </ul>
+                                    </div>
+                                    <div class="tab-pane" role="tabpanel" id="consultantdet">
+                                        <fieldset>
+                                            <h4 class="process-title1">Dr. Anand</h4>
+                                            <div class="form-group">
+                                                <label>Consultant Fee</label>
+                                                <div class="row consul-fee">
+                                                    <div class="col-lg-1 col-xs-4 pdngrg_0"> <span class="rssymbol" href="#">Rs.</span></div>
+                                                    <div class="col-lg-4 col-xs-8  pdng_0">
+                                                        <input type="phone" placeholder="" class="form-control">
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-lg-12">
+                                                        <label>Doctor Hours</label>
+                                                        <input type="phone" placeholder="" class="form-control">
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                        </fieldset>
+                                        <ul>
+                                            <li class="text-left pull-left"><button type="button" class="btn prev-step"><i class="fa fa-chevron-left"></i>  Previous</button></li>
+                                            <li class="text-right pull-right"><button type="submit" class="btn next-step">Save and Next  <i class="fa fa-chevron-right"></i></button></li>
+                                        </ul>
+                                    </div>
+                                    <div class="clearfix"></div>
+                                </div>
+                            </fieldset>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock %}
+{% block javascripts %}
+	{{ parent() }}
+	<script type="text/javascript" src="{{ asset('bundles/js/chosen.jquery.js') }}"></script>
+	<script>
+        $(document).ready(function() {
+            var ckbox = $('.clinic-chkbx');
+            $('.clinic-chkbx').on('click', function() {
+                if (ckbox.is(':checked')) {
+                    $('#dialog .actionbtn2:nth-of-type(2)').removeClass('next_disabled');
+                } else {}
+            });
+            $('.cancel_btn').on('click', function() {
+                $('.ovrlay34').hide();
+                $('#dialog').hide();
+            });
+            var large = '<a class="times-tag-pan"><div class="input-group registration-date-time"><div class="timedropwrap"><select type="text" class="time-drop form-control" id="ship_date" name="ship_date"><option value="7">7AM.</option><option value="8">8AM</option><option value="9">9AM</option><option value="10" selected="">10AM</option><option value="11">11AM</option><option value="12">12PM</option><option value="13">1PM</option><option value="14">2PM</option><option value="15">3PM</option><option value="16">4PM</option><option value="17">5PM</option><option value="18">6PM</option><option value="19">7PM</option></select></div><span class="input-group-addon rang-symbol"><i class="fa fa-minus"aria-hidden="true"></i></span><div class="timedropwrap"><select type="text"class="time-drop form-control" id="shiptime" name="ship_time"><option value="7">7AM.</option><option value="8">8AM</option><option value="9">9AM</option><option value="10" selected="">10AM</option><option value="11">11AM</option><option value="12">12PM</option><option value="13">1PM</option><option value="14">2PM</option><option value="15">3PM</option><option value="16">4PM</option><option value="17">5PM</option><option value="18">6PM</option><option value="19">7PM</option></select></div></div><span class="rem-timsch"><i class="fa fa-times"></i></span></a>';
+            $('.plussymbol1').click(function() {
+                $(this).closest(".timetags").append(large);
+            });
+            $(document).on('click', '.rem-timsch', function(event) {
+                $(this).closest('.times-tag-pan').remove();
+            });
+            var addshedulewindow = '<li><span class="remove-schedule-window" style="display:block;">remove&nbsp;<i class="fa fa-times"></i></span><div class="weekdays-scheduled"><h5 class="sch-title">Days:</h5><label class="weekdays-sch"><input type="checkbox" name="sun" value="" /><span class="days-name">SUN</span></label><label class="weekdays-sch"><input type="checkbox" name="mon" value="" /><span class="days-name">MON</span></label><label class="weekdays-sch"><input type="checkbox" name="tue" value="" /><span class="days-name">TUE</span></label><label class="weekdays-sch"><input type="checkbox" name="wed" value="" /><span class="days-name">WED</span></label><label class="weekdays-sch"><input type="checkbox" name="thu" value="" /><span class="days-name">THU</span></label><label class="weekdays-sch"><input type="checkbox" name="fri" value="" /><span class="days-name">FRI</span></label><label class="weekdays-sch"><input type="checkbox" name="sat" value="" /><span class="days-name">SAT</span></label></div><div class="timeshceeule"><div class="timetags"><h5 class="sch-title">Time Shift:</h5><a><span class="plussymbol1"><i class="fa fa-plus"></i></span></a><a class="times-tag-pan"><div class="input-group registration-date-time "><div class="timedropwrap"><select type="text" class="time-drop form-control" id="ship_date" name="ship_date"><option value="7">7 AM.</option><option value="8">8 AM</option><option value="9">9 AM</option><option value="10" selected>10 AM</option><option value="11">11 AM</option><option value="12">12 PM</option><option value="13">1 PM</option><option value="14">2 PM</option><option value="15">3 PM</option><option value="16">4 PM</option><option value="17">5 PM</option><option value="18">6 PM</option><option value="19">7 PM</option></select></div><span class="input-group-addon rang-symbol"><i class="fa fa-minus" aria-hidden="true"></i></span><div class="timedropwrap"><select type="text" class="time-drop form-control" id="shiptime" name="ship_time"><option value="7">7 AM.</option><option value="8">8 AM</option><option value="9">9 AM</option><option value="10" selected>10 AM</option><option value="11">11 AM</option><option value="12">12 PM</option><option value="13">1 PM</option><option value="14">2 PM</option><option value="15">3 PM</option><option value="16">4 PM</option><option value="17">5 PM</option><option value="18">6 PM</option><option value="19">7 PM</option></select></div></div><!-- <span class="rem-timsch"><i class="fa fa-times"></i></span>--></a></div></div></li>';
+             $('.add-schedule-window').click(function() {
+                 $(this).closest("#schedule-weekdays ul li:first-child > .remove-schedule-window").hide();
+                $(this).closest("#schedule-weekdays ul").append(addshedulewindow);
+                $(this).parents('#schedule-weekdays ul li:first-child .remove-schedule-window').hide();
+                 $(this).closest('.remove-schedule-window').show();
+            });
+            $(document).on('click', '.remove-schedule-window', function(event) {
+                $(this).closest("#schedule-weekdays ul li").remove();
+            });
+        });
+    </script>
+	<script>
+        $(function() {
+            $('.chosen-select').chosen();
+            $('.chosen-select-deselect').chosen({
+                allow_single_deselect: true
+            });
+        });
+        $(document).ready(function() {
+            $('.nav-tabs > li a[title]').tooltip();
+            $('a[data-toggle="tab"]').on('show.bs.tab', function(e) {
+                var $target = $(e.target);
+
+                if ($target.parent().hasClass('disabled')) {
+                    return false;
+                }
+            });
+            $(".next-step").click(function(e) {
+
+                var $active = $('.wizard .nav-tabs li.active');
+                $active.next().removeClass('disabled');
+                nextTab($active);
+
+                $('.wizard .nav-tabs li.active .connecting-line').css({
+                    "border-bottom-left-radius": 0,
+                    "border-top-left-radius": 0
+                });
+
+            });
+            $(".prev-step").click(function(e) {
+
+                var $active = $('.wizard .nav-tabs li.active');
+                prevTab($active);
+
+            });
+        });
+        function nextTab(elem) {
+            $(elem).next().find('a[data-toggle="tab"]').click();
+        }
+        function prevTab(elem) {
+            $(elem).prev().find('a[data-toggle="tab"]').click();
+        }
+        $(document).ready(function() {
+            $('#add_clinic_form').bootstrapValidator({
+                    // To use feedback icons, ensure that you use Bootstrap v3.1.0 or later
+                    feedbackIcons: {
+                        valid: 'glyphicon glyphicon-ok',
+                        invalid: 'glyphicon glyphicon-remove',
+                        validating: 'glyphicon glyphicon-refresh'
+                    },
+                    fields: {
+                        first_name: {
+                            validators: {
+                                stringLength: {
+                                    min: 2,
+                                },
+                                notEmpty: {
+                                    message: 'Please supply your first name'
+                                }
+                            }
+                        },
+                        last_name: {
+                            validators: {
+                                stringLength: {
+                                    min: 2,
+                                },
+                                notEmpty: {
+                                    message: 'Please supply your last name'
+                                }
+                            }
+                        },
+                        email: {
+                            validators: {
+                                notEmpty: {
+                                    message: 'Please supply your email address'
+                                },
+                                emailAddress: {
+                                    message: 'Please supply a valid email address'
+                                }
+                            }
+                        },
+                        phone: {
+                            validators: {
+                                notEmpty: {
+                                    message: 'Please supply your phone number'
+                                },
+                                phone: {
+                                    country: 'US',
+                                    message: 'Please supply a vaild phone number with area code'
+                                }
+                            }
+                        },
+                        address: {
+                            validators: {
+                                stringLength: {
+                                    min: 8,
+                                },
+                                notEmpty: {
+                                    message: 'Please supply your street address'
+                                }
+                            }
+                        },
+                        city: {
+                            validators: {
+                                stringLength: {
+                                    min: 4,
+                                },
+                                notEmpty: {
+                                    message: 'Please supply your city'
+                                }
+                            }
+                        },
+                        state: {
+                            validators: {
+                                notEmpty: {
+                                    message: 'Please select your state'
+                                }
+                            }
+                        },
+                        zip: {
+                            validators: {
+                                notEmpty: {
+                                    message: 'Please supply your zip code'
+                                },
+                                zipCode: {
+                                    country: 'US',
+                                    message: 'Please supply a vaild zip code'
+                                }
+                            }
+                        },
+                        comment: {
+                            validators: {
+                                stringLength: {
+                                    min: 10,
+                                    max: 200,
+                                    message: 'Please enter at least 10 characters and no more than 200'
+                                },
+                                notEmpty: {
+                                    message: 'Please supply a description of your project'
+                                }
+                            }
+                        }
+                    }
+                })
+                .on('success.form.bv', function(e) {
+                    $('#success_message').slideDown({
+                        opacity: "show"
+                    }, "slow") // Do something ...
+                    $('#add_clinic_form').data('bootstrapValidator').resetForm();
+                    // Prevent form submission
+                    e.preventDefault();
+                    // Get the form instance
+                    var $form = $(e.target);
+                    // Get the BootstrapValidator instance
+                    var bv = $form.data('bootstrapValidator');
+                    // Use Ajax to submit form data
+                    $.post($form.attr('action'), $form.serialize(), function(result) {
+                        console.log(result);
+                    }, 'json');
+                });
+        });
+        $(document).ready(function() {
+            $('[data-toggle="tooltip"]').tooltip({
+                html: "true"
+            });
+        });
+    </script>
+{% endblock %}

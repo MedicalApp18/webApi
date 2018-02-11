@@ -216,4 +216,39 @@ class EducationApiController extends Controller
 		$response = $serializer->serialize($result, 'json');
         return new Response($response);
     }
+	
+	/**
+     * @Rest\Post("/api/v0.1/remove/education")
+     */
+    public function removeeducation(Request $request){
+		$common     = $this->get(Common::class);
+		$Jwtauth    = $this->get(Jwtauth::class);
+		$serializer = $common->getSerializer();
+		$checkToken = $Jwtauth->checkToken($request->headers->get('Authorization'), $this->getDoctrine()->getRepository('AppBundle:User'));
+		if($checkToken['verify'] == 1){
+			$requestParameters = $request->request->all();
+			if(isset($requestParameters['id'])){
+				$eduObj= $common->checkEntity('id',$requestParameters['id'], $this->getDoctrine()->getRepository('AppBundle:Education'));
+				if(count($eduObj)> 0){
+					$em = $this->getDoctrine()->getManager();
+					$em->remove($eduObj);
+					$em->flush();
+					$result['data']     = 'Education deleted successfully';
+					$result['status']   = "200";
+				}else{
+					$result['data']     = 'Not Found';
+					$result['status']   = "404";
+				}
+			}else{
+				$result['data']     = 'Bad request';
+				$result['status']   = "400";
+			}
+		}else{
+			$result['message'] = "user not found";
+            $result['status'] = "401";
+		}
+		$result['send_at'] = date(DATE_ISO8601, strtotime(date("m/d/Y H:i:s")));
+		$response = $serializer->serialize($result, 'json');
+        return new Response($response);
+    }
 }
