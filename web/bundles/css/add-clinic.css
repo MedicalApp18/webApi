@@ -1,0 +1,648 @@
+        #add_clinic_form fieldset ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+        
+        .wizard {
+            background: #fff;
+            font-family: 'Montserrat', sans-serif;
+            padding: 30px 15px;
+            -webkit-box-shadow: 0 2px 3px 0 rgba(0, 0, 0, .3);
+            -moz-box-shadow: 0 2px 3px 0 rgba(0, 0, 0, .3);
+            box-shadow: 0 2px 3px 0 rgba(0, 0, 0, .3);
+            margin: 5px;
+            -webkit-transition: all .3s ease 0s;
+            -moz-transition: all .3s ease 0s;
+            -ms-transition: all .3s ease 0s;
+            -o-transition: all .3s ease 0s;
+            transition: all .3s ease 0s
+        }
+        
+        .wizard .nav-tabs {
+            position: relative;
+            border: 0px;
+        }
+        
+        .wizard>div.wizard-inner {
+            position: relative;
+        }
+        
+        .connecting-line {
+            height: 15px;
+            background: #e0e0e0;
+            position: absolute;
+            width: 99.5%;
+            margin: 0 auto;
+            left: 0;
+            right: 0;
+            top: 44%;
+            z-index: 1;
+            border-radius: 15px;
+        }
+        
+        .active-line {
+            height: 15px;
+            background: #e0e0e0;
+            position: absolute;
+            width: 99.5%;
+            margin: 0 auto;
+            left: 0;
+            right: 0;
+            top: 44%;
+            z-index: 1;
+            border-radius: 15px !important;
+        }
+        
+        .active .connecting-line {
+            background-color: #00a0cf;
+        }
+        
+        .border-right {
+            border-radius: 15px 0 0 15px;
+        }
+        
+        .border-left {
+            border-radius: 0;
+        }
+        
+        .wizard .nav-tabs>li.active>a,
+        .wizard .nav-tabs>li.active>a:hover,
+        .wizard .nav-tabs>li.active>a:focus {
+            cursor: default;
+            border: 0;
+            color: #00a0cf;
+            border-bottom-color: transparent;
+        }
+        
+        .nav-tabs li p {
+            padding-top: 70px;
+            font-size: 16px;
+            text-align: center;
+            line-height: 17px;
+        }
+        
+        .list-inline {
+            text-align: RIGHT;
+        }
+        
+        #add-clinic label {
+            font-size: 0.9em;
+            line-height: 1em;
+            color: #000;
+            font-weight: normal;
+        }
+        
+        span.round-tab {
+            width: 70px;
+            height: 70px;
+            line-height: 70px;
+            display: inline-block;
+            border-radius: 100px;
+            background: #DFE3E4;
+            border: 2px solid #fff;
+            z-index: 1;
+            position: absolute;
+            text-align: center;
+            font-size: 25px;
+        }
+        
+        .wizard li.active span.round-tab {
+            background: #00a0cf;
+            color: white;
+            border: 2px solid #fff;
+        }
+        
+        span.round-tab:hover {
+            color: white;
+            border: 2px solid #fff;
+            background-color: #00a0cf;
+        }
+        
+        .wizard .nav-tabs>li {
+            width: 20%;
+        }
+        
+        .wizard .nav-tabs>li a {
+            width: 70px;
+            height: 70px;
+            margin: 20px auto;
+            border-radius: 100%;
+            padding: 0;
+            color: #777;
+        }
+        
+        .wizard .tab-pane {
+            position: relative;
+            padding-top: 15px;
+            border-top: 1px solid #fff;
+            margin-top: 50px;
+        }
+        
+        .next-step:hover,
+        .next-step,
+        .prev-step:hover,
+        .prev-step {
+            position: relative;
+            background-color: #00a0cf;
+            font-size: 13px;
+            color: #FFFFFF;
+        }
+        
+        @media( min-width: 320px) and ( max-width:767px) {
+            .wizard {
+                padding: 10px 15px;
+            }
+            .wizard .tab-pane {
+                position: relative;
+                padding-top: 15px;
+                border-top: 1px solid #fff;
+                margin-top: 10px;
+            }
+            span.round-tab {
+                font-size: 16px;
+                width: 50px;
+                height: 50px;
+                line-height: 50px;
+            }
+            .wizard .nav-tabs>li a {
+                width: 50px;
+                height: 50px;
+            }
+            .wizard li.active:after {
+                content: " ";
+                position: absolute;
+                left: 35%;
+            }
+            .nav-tabs li p {
+                padding-top: 55px;
+                font-size: 11px;
+                text-align: center;
+                line-height: 11px;
+            }
+            .connecting-line,
+            .active-line {
+                top: 43%;
+            }
+            #schedule-weekdays label.weekdays-sch {
+                width: 12.33% !important;
+            }
+            .times-tag-pan {
+                width: 90% !important;
+            }
+            .time-drop {
+                font-size: 16px !important;
+            }
+            .timetags a:nth-of-type(1) {
+                width: 100%;
+            }
+            .plussymbol1 {
+                width: 100% !important;
+                display: block;
+                border-radius: 0 !important;
+            }
+        }
+        /* FOR SELECT CLINIC POPUP*/
+        
+        .ovrlay34 {
+            position: fixed;
+            background: rgba(0, 0, 0, 0.5);
+            top: 0;
+            left: 0;
+            bottom: 0;
+            height: 100%;
+            /*			display: none;*/
+            width: 100%;
+            z-index: 99999;
+        }
+        
+        .next_disabled {
+            user-select: none;
+            opacity: 0.2;
+        }
+        
+        #dialog {
+            font-family: 'Montserrat', sans-serif;
+            color: #fff;
+            /*			display: none;*/
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 99999;
+            background-color: #27252c;
+            background: -webkit-linear-gradient(top, #27252c, #34323b);
+            width: calc(50% - 100px);
+            min-width: 400px;
+            height: 230px;
+            border-radius: 0 0 10px 10px;
+            border-top: 2px solid #43404c;
+            text-align: center;
+            box-shadow: 0 18px 55px rgba(0, 0, 0, 0.6);
+        }
+        
+        #titlebar {
+            width: 100%;
+            height: 40px;
+            background-color: #fff;
+            background: -webkit-linear-gradient(top, #d2d2d2, #a9a9a9);
+            border-radius: 10px 10px 0 0;
+            margin-top: -32px;
+        }
+        
+        #titlebar h2 {
+            color: #303030;
+            font: bold 1.3em/2.2em 'Montserrat', sans-serif;
+            text-shadow: 0 1px 1px #d2d2d2;
+        }
+        
+        .actionbtn2 {
+            background: -webkit-linear-gradient(top, #474350, #34313a);
+            display: inline-block;
+            position: relative;
+            margin: 25px auto;
+            border: 1px solid #2d2b33;
+            border-radius: 4px;
+            padding: 10px 20px;
+            text-shadow: 0 1px 0 #333;
+            box-shadow: inset 0 2px 2px #55515d;
+        }
+        
+        .actionbtn2 {
+            color: #fff;
+        }
+        
+        .actionbtn2:focus {
+            outline: none;
+        }
+        
+        .actionbtn2:hover {
+            cursor: pointer;
+            box-shadow: inset 0 2px 2px #55515d, 0 0 25px -6px #55515d;
+        }
+        
+        .chose_clinic ul {
+            list-style: none;
+        }
+        
+        .chose_clinic ul li {
+            color: #AAAAAA;
+            display: block;
+            position: relative;
+        }
+        
+        .chose_clinic ul li input[type=radio] {
+            position: absolute;
+            visibility: hidden;
+        }
+        
+        .chose_clinic ul li label {
+            display: block;
+            position: relative;
+            font-weight: 300;
+            font-size: 1.0em;
+            padding: 25px 0px 0px 50px;
+            margin: 10px auto;
+            height: 30px;
+            text-align: left;
+            z-index: 9;
+            cursor: pointer;
+            -webkit-transition: all 0.25s linear;
+        }
+        
+        .chose_clinic ul li:hover label {
+            color: #FFFFFF;
+        }
+        
+        .chose_clinic ul li .check {
+            display: block;
+            position: absolute;
+            border: 5px solid #AAAAAA;
+            border-radius: 100%;
+            height: 25px;
+            width: 25px;
+            top: 30px;
+            left: 20px;
+            z-index: 5;
+            transition: border .25s linear;
+            -webkit-transition: border .25s linear;
+        }
+        
+        .chose_clinic ul li:hover .check {
+            border: 5px solid #FFFFFF;
+        }
+        
+        .chose_clinic ul li .check::before {
+            display: block;
+            position: absolute;
+            content: '';
+            border-radius: 100%;
+            height: 9px;
+            width: 9px;
+            top: 3px;
+            left: 3px;
+            margin: auto;
+            transition: background 0.25s linear;
+            -webkit-transition: background 0.25s linear;
+        }
+        
+        .chose_clinic input[type=radio]:checked~.check {
+            border: 5px solid #00a0cf;
+        }
+        
+        .chose_clinic input[type=radio]:checked~.check::before {
+            background: #00a0cf;
+        }
+        
+        .chose_clinic input[type=radio]:checked~label {
+            color: #00a0cf;
+        }
+        
+        .note-7 ul li {
+            margin: 0;
+            padding: 0;
+        }
+        
+        .note-7 ul {
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+        
+        .process-title1 {
+            padding: 0 0 5px;
+            font-size: 15px;
+            font-weight: 600;
+        }
+        
+        .edit-btn2 {
+            border: 1px solid #ccc;
+            padding: 10px;
+            box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);
+            -moz-box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);
+            -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);
+            border-radius: 4px;
+            padding: 6px 12px;
+            height: 34px;
+        }
+        
+        .pdng_0 {
+            padding-left: 0;
+        }
+        
+        .pdng_2 {
+            padding-right: 2px;
+        }
+        
+        .pdngrg_0 {
+            padding-right: 0;
+        }
+        
+        .map-location-hrline {
+            border-bottom: 1px solid #DFE3E4;
+            height: 1px;
+        }
+        
+        .map-loc1 {
+            margin: 5px 0 10px;
+        }
+        
+        .map_loc h4 {
+            font-size: 15px;
+            margin: 0;
+            color: #00a0cf;
+            padding: 20px 0 10px;
+        }
+        
+        .verfd {
+            position: absolute;
+            right: 12px;
+            top: 10px;
+            font-size: 11px;
+            color: #32CD32;
+        }
+        
+        #schedule-weekdays ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+        
+        #schedule-weekdays ul li {
+            padding: 0px 0 20px;
+            position: relative;
+            border-bottom: 1px solid #ccc;
+            margin: 10px 0 0;
+        }
+        
+        #schedule-weekdays input[type=checkbox] {
+            display: none;
+        }
+        
+        #schedule-weekdays label.weekdays-sch {
+            width: 50px;
+            display: inline-block;
+        }
+        
+        #schedule-weekdays span.days-name {
+            background-color: #f4f4f4;
+            border-radius: 0;
+            font-weight: 700;
+            color: #777;
+            border: 1px solid #ccc;
+            font-size: .85em;
+            letter-spacing: 0;
+            text-decoration: none;
+            font-family: sans-serif;
+            text-align: center;
+            padding: 10px 0;
+            cursor: pointer;
+            display: block;
+            margin: 0 auto;
+            transition: background-color 150ms ease-in;
+        }
+        
+        #schedule-weekdays span.days-name:hover {
+            background-color: #27252c;
+            color: #fff;
+            border: 1px solid #27252c;
+        }
+        
+        #schedule-weekdays input[type=checkbox]:checked+span.days-name {
+            background: #27252c;
+            color: #fff;
+            border: 1px solid #27252c;
+            background-size: 15px 13px;
+        }
+        
+        #schedule-weekdays input[type=checkbox]:checked:hover+span.days-name {
+            color: #fff;
+            border: 1px solid #27252c;
+            background: #27252c;
+            background-size: 15px 15px;
+        }
+        
+        .timetags a {
+            float: left;
+            display: inline-block;
+            color: #717171;
+            -webkit-transition: all .1s ease-in-out;
+            -moz-transition: all .1s ease-in-out;
+            -o-transition: all .1s ease-in-out;
+            -ms-transition: all .1s ease-in-out;
+            transition: all .1s ease-in-out;
+            border-radius: 2px;
+            margin: 0 3px 0 0;
+            padding: 5px 0;
+            position: relative;
+        }
+        
+        .timetags a:nth-of-type(2) {
+            margin-right: 5px !important;
+        }
+        
+        .timeshceeule {
+            display: table;
+            width: 100%;
+        }
+        
+        .registration-date-time {
+            border: 1px solid #00a0cf;
+            border-radius: 20px;
+            padding: 4px 15px;
+        }
+        
+        .time-drop {
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            appearance: none;
+            padding: 6px 10px !important;
+            font-size: 13px;
+            height: 30px !important;
+            border: none;
+            box-shadow: none;
+            border-radius: 10px !important;
+        }
+        
+        .time-drop:focus {
+            box-shadow: none;
+        }
+        /*
+           .registration-date-time {
+    width:200px;
+    overflow: hidden; 
+    height: 50px;    
+    position: relative;
+    display: block;
+    border:2px solid blue;
+}
+*/
+        
+        .timedropwrap {
+            position: relative;
+        }
+        
+        .timedropwrap:after {
+            content: "\f107";
+            font-family: FontAwesome;
+            color: #000;
+            position: absolute;
+            right: 0;
+            top: 5px;
+            z-index: 999;
+            width: 10%;
+            height: 100%;
+            pointer-events: none;
+        }
+        
+        .rang-symbol {
+            background: none;
+            border: none;
+        }
+        
+        .plussymbol1 {
+            background: #00a0cf;
+            width: 40px;
+            cursor: pointer;
+            display: block;
+            font-size: 15px;
+            height: 40px;
+            border-radius: 50%;
+            text-align: center;
+            color: #fff;
+            line-height: 40px;
+        }
+        
+        .rem-timsch {
+            background: #f15a26;
+            width: 20px;
+            font-size: 10px;
+            position: absolute;
+            cursor: pointer;
+            height: 20px;
+            border-radius: 50%;
+            line-height: 20px;
+            text-align: center;
+            right: -22px;
+            top: 15px;
+            color: #fff;
+        }
+        
+        .times-tag-pan {
+            margin-right: 30px !important;
+        }
+        
+        .sch-title {
+            margin: 0;
+            display: block;
+            padding: 15px 0 5px;
+            font-size: 12px;
+            font-weight: 600;
+        }
+        
+        .add-schedule-window {
+            position: absolute;
+            right: 0;
+            font-size: 11px;
+            padding: 3px 5px;
+            cursor: pointer;
+            text-transform: capitalize;
+            color: #fff;
+            background: green;
+            top: 15px;
+            text-align: center;
+        }
+        
+        .remove-schedule-window {
+            position: absolute;
+            right: 0;
+            font-size: 11px;
+            display: none;
+            padding: 3px 5px;
+            cursor: pointer;
+            text-transform: capitalize;
+            color: #fff;
+            background: #f15a26;
+            top: 15px;
+            text-align: center;
+            border-radius: 4px;
+        }
+        
+        .consul-fee input {
+            border-top-left-radius: 0;
+            border-bottom-left-radius: 0;
+        }
+        
+        .consul-fee span.rssymbol {
+            border: 1px solid #ccc;
+            border-top-right-radius: 0;
+            border-bottom-right-radius: 0;
+            display: block;
+            border-right: 0;
+            padding: 10px;
+            box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);
+            -moz-box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);
+            -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);
+            padding: 6px 12px;
+            height: 34px;
+        }
